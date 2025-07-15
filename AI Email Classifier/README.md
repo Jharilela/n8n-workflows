@@ -1,7 +1,7 @@
 # AI Email Classifier 📬  
 Automate Email Classification, Prioritization, and Spam Detection Across Multiple Accounts  
 
-Created by: Jayant Kumar ([@jharilela](https://github.com/Jharilela))  
+This workflow can also be found on the [main n8n.io website](https://n8n.io/workflows/5789-multi-account-email-classifier-with-ai-gmail-discord-and-google-sheets/)
 🛠 Powered by: Gmail, Google Sheets, OpenAI, Discord, and n8n  
 
 ---
