@@ -1,8 +1,10 @@
 # n8n Workflow: AI-Powered Blog Automation for WordPress
 
-This workflow can also be found on the [main n8n.io website](https://n8n.io/workflows/5230-content-farming-ai-powered-blog-automation-for-wordpress/) 
-
 This workflow automatically generates and publishes 10 blog posts per day to a WordPress site. It collects tech-related news articles, filters and analyzes them for relevance, expands them with research, generates SEO-optimized long-form articles using AI, creates a matching image using Leonardo AI, and publishes them via the WordPress REST API. Every step is tracked and stored in MongoDB for reference and performance tracking.
+
+![Content Farming v2 from news to wordpress](https://articles.emp0.com/wp-content/uploads/2025/07/content-generator-v2-workflow.png)
+
+This workflow can also be found on the [main n8n.io website](https://n8n.io/workflows/5230-content-farming-ai-powered-blog-automation-for-wordpress/) 
 
 You can see the demo results for the AI based articles here: [Emp0 Articles](https://articles.emp0.com/author/anya/)
 
@@ -67,3 +69,9 @@ This system can scale daily article publishing with zero manual effort. However,
 - Both agents will loop back suggestions to the content generator, improving each draft until it meets human-level standards.
 
 The final goal is to consistently produce high-quality, readable, SEO-optimized content that is indistinguishable from human writing.
+
+## 📎 Repo & Credits
+
+- Also checkout our Discord bot trigger: [n8n_discord_trigger_bot](https://github.com/Jharilela/n8n_discord_trigger_bot)
+- Creator: [Jay (Emp₀)](https://twitter.com/jharilela)
+- Automation tool: [n8n](https://n8n.partnerlinks.io/emp0)

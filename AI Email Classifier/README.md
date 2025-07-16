@@ -1,6 +1,10 @@
 # AI Email Classifier 📬  
 Automate Email Classification, Prioritization, and Spam Detection Across Multiple Accounts  
 
+![ai-email-classifier-workflow](https://articles.emp0.com/wp-content/uploads/2025/07/workflow-ai-email-classifier.png)  
+
+This workflow can also be found on the [main n8n.io website](https://n8n.io/workflows/5789-multi-account-email-classifier-with-ai-gmail-discord-and-google-sheets/) 
+
 Created by: Jayant Kumar ([@jharilela](https://github.com/Jharilela))  
 🛠 Powered by: Gmail, Google Sheets, OpenAI, Discord, and n8n  
 
@@ -122,3 +126,8 @@ Now I just scroll my Discord DMs and know what to reply to, and ignore everythin
 
 ---
 
+## 📎 Repo & Credits
+
+- Discord bot trigger: [n8n_discord_trigger_bot](https://github.com/Jharilela/n8n_discord_trigger_bot)
+- Creator: [Jay (Emp₀)](https://twitter.com/jharilela)
+- Automation tool: [n8n](https://n8n.partnerlinks.io/emp0)

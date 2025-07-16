@@ -1,6 +1,7 @@
 # Overview
 Fetch Multiple Google Analytics GA4 metrics daily, post to Discord, update previous day’s entry as GA data finalizes over seven days.
-![Discord Daily Digest for Multiple Google Analytics Accounts](https://articles.emp0.com/wp-content/uploads/2025/06/Discord-Daily-Digest-for-Multiple-Google-Analytics-Accounts.png)
+
+![Google Analytics to Discord Workflow](https://articles.emp0.com/wp-content/uploads/2025/07/google-analytics-to-discord-workflow.png)
 
 This workflow can also be found on the [main n8n.io website](https://n8n.io/workflows/5470-discord-daily-digest-for-multiple-google-analytics-accounts/) 
 
@@ -12,6 +13,8 @@ This workflow can also be found on the [main n8n.io website](https://n8n.io/work
 ## Use Case
 - Teams tracking website performance via Discord (or any chat tool) without manual copy–paste. Marketing managers, community moderators, growth hackers.
 - If your manager asks you for daily marketing report every morning, you can now automate it
+
+![Discord Daily Digest for Multiple Google Analytics Accounts](https://articles.emp0.com/wp-content/uploads/2025/06/Discord-Daily-Digest-for-Multiple-Google-Analytics-Accounts.png)
 
 ## Notes
 - google analytics node in n8n does not provide real time data. The node updates previous values for the next 7 days
@@ -61,3 +64,9 @@ Value: Bot &lt;your-bot-token&gt;
 # Customization
 
 Replace Discord HTTP Request nodes with Slack, ClickUp, WhatsApp, Telegram integrations by swapping POST/PATCH endpoints and authentication.
+
+## 📎 Repo & Credits
+
+- Also check out our Discord bot trigger: [n8n_discord_trigger_bot](https://github.com/Jharilela/n8n_discord_trigger_bot)
+- Creator: [Jay (Emp₀)](https://twitter.com/jharilela)
+- Automation tool: [n8n](https://n8n.partnerlinks.io/emp0)
