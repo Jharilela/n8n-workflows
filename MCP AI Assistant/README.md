@@ -55,7 +55,7 @@ This workflow is also published on the [main n8n.io website](https://n8n.io/work
   - LinkedIn
   - Utility tools
   - Cross-tool actions  
-  (Refer to [prompt checklist]() for prompt coverage.)
+  (Refer to [prompt checklist](https://github.com/Jharilela/n8n-workflows/blob/main/MCP%20AI%20Assistant/prompt%20checklist.md) for prompt coverage.)
 
 ---
 

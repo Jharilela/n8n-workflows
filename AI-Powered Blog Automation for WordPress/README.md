@@ -48,8 +48,6 @@ To run this project, you need accounts and API access for the following:
 4. Adjust scheduler nodes if you want to change post frequency or publishing times.
 5. Run the n8n instance continuously using Docker, PM2, or hosted automation platform.
 
-![Content farm n8n workflow](https://articles.emp0.com/wp-content/uploads/2025/06/n8n-workflow.png)
-
 ## Cost Estimate
 
 | Component     | Daily Usage                  | Monthly Cost Estimate |
