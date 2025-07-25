@@ -1,6 +1,6 @@
 # Overview
 
-![Google Analytics to Discord Workflow](https://articles.emp0.com/wp-content/uploads/2025/07/generate-and-upload-blog-images-with-leonardo-ai-and-wordpress.png)
+![Generate and Upload Blog Images with Leonardo AI and WordPress](https://articles.emp0.com/wp-content/uploads/2025/07/generate-and-upload-blog-images-with-leonardo-ai-and-wordpress.png)
 
 This workflow generates high-quality AI images from text prompts using **Leonardo AI**, then automatically uploads the result to your WordPress media library and returns the final image URL.
 
