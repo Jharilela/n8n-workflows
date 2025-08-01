@@ -6,13 +6,17 @@
 
 This is a fully automated AI powered blog content generation and distribution workflow built for the n8n automation platform. It's designed for solo founders, creators, indie hackers, marketers, SEO consultants, or lean startup teams who run multiple projects and want to consistently publish high quality, search optimized articles without relying on a human marketing team.
 
-[Buy Now for only $29](https://0emp0.gumroad.com/l/content-farming-v3) and get instant traffic to your blog / wordpress site
-
 ![Content farming v3](https://articles.emp0.com/wp-content/uploads/2025/07/gumroad.png)
 
 Running a blog is essential to drive traffic, build authority, and rank on Google, but it’s time consuming and expensive to manage. This workflow turns your blog into a living, breathing content engine that generates, enhances, and publishes articles every day using a team of autonomous AI agents. If you want to boost your site’s visibility and promote it across multiple channels like WordPress, Twitter, and Dev.to, this workflow is for you.
 
-[Checkout the articles generated with this workflow](https://articles.emp0.com/tag/v3/)
+---
+
+## Important links
+
+- ✨ This workflow is published on the [n8n official website](https://n8n.io/workflows/6734-ai-powered-blog-automation-generate-and-publish-seo-articles-with-gpt-4-to-wordpress-and-twitter/)
+- 📚 Checkout the articles [generated with this workflow](https://articles.emp0.com/tag/v3/)
+- 🛒 [Buy Now for only $29](https://0emp0.gumroad.com/l/content-farming-v3) and get instant traffic to your blog / wordpress site
 
 ---
 

@@ -3,6 +3,10 @@
 
 This document provides a step-by-step technical guide to set up the complete AI-powered blog automation system using n8n and third-party APIs. It is intended for developers, automation specialists, and technical users who want to deploy, modify, and run the system independently.
 
+- ✨ This workflow is published on the [n8n official website](https://n8n.io/workflows/6734-ai-powered-blog-automation-generate-and-publish-seo-articles-with-gpt-4-to-wordpress-and-twitter/)
+- 📚 Checkout the articles [generated with this workflow](https://articles.emp0.com/tag/v3/)
+- 🛒 [Buy Now for only $29](https://0emp0.gumroad.com/l/content-farming-v3) and get instant traffic to your blog / wordpress site
+
 ## Contents
 
 - [Basics](#basics)

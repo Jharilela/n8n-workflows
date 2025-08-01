@@ -24,7 +24,7 @@
       "name": "Upload image2",
       "type": "n8n-nodes-base.httpRequest",
       "position": [
-        896,
+        912,
         -16
       ],
       "typeVersion": 4.2,
@@ -33,7 +33,7 @@
       "credentials": {
         "wordpressApi": {
           "id": "G1G8jDdEoWAVytQb",
-          "name": "Wordpress  - author@email.com"
+          "name": "Wordpress  - your@email.com"
         }
       }
     },
@@ -164,12 +164,12 @@
       "parameters": {
         "content": "## Upload to WordPress",
         "height": 272,
-        "width": 150,
+        "width": 166,
         "color": 6
       },
       "type": "n8n-nodes-base.stickyNote",
       "position": [
-        874,
+        880,
         -112
       ],
       "typeVersion": 1,
@@ -179,7 +179,7 @@
     {
       "parameters": {
         "content": "## Image generated\n![batman-typing-on-a-laptop](https://articles.emp0.com/wp-content/uploads/2025/07/img-batman-typing-on-a-laptop.jpg)",
-        "height": 448,
+        "height": 432,
         "width": 672,
         "color": 7
       },
@@ -205,13 +205,13 @@
     },
     {
       "parameters": {
-        "jsCode": "return {\"image_url\" : $input.first().json.guid.raw}"
+        "jsCode": "return {\n  \"public_image_url\" :$input.first().json.data[0].guid.raw,\n  \"wordpress\":$input.first().json.data[0],\n  \"twitter\":$input.first().json.data[1]\n}"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1056,
-        -16
+        1456,
+        0
       ],
       "id": "c124d2ca-f8a6-4b59-84dd-61181bcc2501",
       "name": "Code"
@@ -250,6 +250,87 @@
       ],
       "id": "773eab92-6f49-4b35-bde8-081c86785c9a",
       "name": "Code1"
+    },
+    {
+      "parameters": {
+        "content": "## Upload to Twitter",
+        "height": 272,
+        "width": 166,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        880,
+        192
+      ],
+      "typeVersion": 1,
+      "id": "f5b60545-3f6e-453c-80de-a76c614a95b1",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        1120,
+        0
+      ],
+      "id": "1b4cac4d-17b0-44db-84aa-de970fb48ed0",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://upload.twitter.com/1.1/media/upload.json?media_category=TWEET_IMAGE",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "twitterOAuth1Api",
+        "sendBody": true,
+        "contentType": "multipart-form-data",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "parameterType": "formBinaryData",
+              "name": "media",
+              "inputDataFieldName": "data"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "id": "f78fca3e-d4b7-4836-ad6c-412d253e805b",
+      "name": "Upload Media (X)",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        912,
+        288
+      ],
+      "typeVersion": 4.2,
+      "credentials": {
+        "twitterOAuth1Api": {
+          "id": "HywNT47jE0Dh8NvQ",
+          "name": "X OAuth account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        1280,
+        0
+      ],
+      "id": "c3ee67e2-9b71-4552-8693-e4c7bb004fc0",
+      "name": "Aggregate"
     }
   ],
   "connections": {
@@ -257,7 +338,7 @@
       "main": [
         [
           {
-            "node": "Code",
+            "node": "Merge",
             "type": "main",
             "index": 0
           }
@@ -304,6 +385,11 @@
             "node": "Upload image2",
             "type": "main",
             "index": 0
+          },
+          {
+            "node": "Upload Media (X)",
+            "type": "main",
+            "index": 0
           }
         ]
       ]
@@ -340,13 +426,46 @@
           }
         ]
       ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload Media (X)": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "pinData": {
     "When clicking ‘Execute workflow’": [
       {
-        "prompt": "Generate an image of batman typing on a laptop",
-        "slug": "batman-typing-on-a-laptop"
+        "prompt": "Generate an image of batman typing on his keyboard",
+        "slug": "batman-typing-on-keyboard"
       }
     ]
   },
