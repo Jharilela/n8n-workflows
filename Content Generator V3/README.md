@@ -38,7 +38,7 @@ To get the most out of this workflow, prepare the following:
 - Step 8: WordPress Draft Creation  
 - Step 9: Distribute to Twitter and Dev.to
 
-Read the [complete technical architecture](https://0emp0.gumroad.com/l/content-farming-v3)
+Read the [complete technical architecture and cost structure](https://github.com/Jharilela/n8n-workflows/blob/main/Content%20Generator%20V3/Technical%20Setup.md)
 
 ---
 
