@@ -57,7 +57,7 @@
   </tr>
   <tr>
     <td><strong><a href="Generate%20Images%20with%20Replicate%20and%20Flux/">Replicate Flux Image Generator</a></strong></td>
-    <td>Generate images via Replicate Flux models and upload to WordPress/Twitter. Built as an MCP module for on-demand image creation with cost-optimized model selection.</td>
+    <td>Generate images via Replicate Flux models and upload to WordPress/Twitter. Built as an MCP module for on-demand image creation with cost-optimized model selection. <a href="https://n8n.io/workflows/7192">View on n8n</a></td>
     <td><span style="color: green;">✅ FREE</span></td>
   </tr>
 </table>
