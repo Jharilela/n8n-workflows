@@ -27,7 +27,7 @@
   </tr>
   <tr>
     <td><strong><a href="Content%20Generator%20V1/">Content Generator V1</a></strong></td>
-    <td>Automated AI-powered blog creation with topic discovery, content generation, and WordPress publishing with featured images. Simple daily blog automation workflow. <a href="#">View on n8n</a></td>
+    <td>Automated AI-powered blog creation with topic discovery, content generation, and WordPress publishing with featured images. Simple daily blog automation workflow.</td>
     <td><span style="color: green;">✅ FREE</span></td>
   </tr>
   <tr>
