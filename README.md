@@ -56,8 +56,8 @@
     <td><span style="color: green;">✅ FREE</span></td>
   </tr>
   <tr>
-    <td><strong><a href="AI-Powered%20Blog%20Automation%20for%20WordPress/">Blog Automation v2</a></strong></td>
-    <td>AI-powered blog automation for WordPress (previous free version of Content Generator V3). <a href="https://n8n.io/workflows/5230-content-farming-ai-powered-blog-automation-for-wordpress/">View on n8n</a></td>
+    <td><strong><a href="AI-Powered%20Blog%20Automation%20for%20WordPress/">Content Generator V2</a></strong></td>
+    <td>Scheduled AI content creation with RSS feed integration, automated WordPress publishing, and social media distribution for consistent blog output. <a href="https://n8n.io/workflows/5230-content-farming-ai-powered-blog-automation-for-wordpress/">View on n8n</a></td>
     <td><span style="color: green;">✅ FREE</span></td>
   </tr>
   <tr>
