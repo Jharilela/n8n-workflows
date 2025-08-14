@@ -31,6 +31,11 @@
     <td><span style="color: green;">✅ FREE</span></td>
   </tr>
   <tr>
+    <td><strong><a href="AI-Powered%20Blog%20Automation%20for%20WordPress/">Content Generator V2</a></strong></td>
+    <td>Scheduled AI content creation with RSS feed integration, automated WordPress publishing, and social media distribution for consistent blog output. <a href="https://n8n.io/workflows/5230-content-farming-ai-powered-blog-automation-for-wordpress/">View on n8n</a></td>
+    <td><span style="color: green;">✅ FREE</span></td>
+  </tr>
+  <tr>
     <td><strong><a href="Content%20Generator%20V3/">Content Generator V3</a></strong></td>
     <td>AI-powered blog automation that publishes hourly SEO articles to WordPress and Twitter using RSS ingestion and vector clustering. <a href="https://n8n.io/workflows/6734-ai-blog-automation-publish-hourly-seo-articles-to-wordpress-and-twitter-v3/">View on n8n</a></td>
     <td><a href="https://0emp0.gumroad.com/l/content-farming-v3" style="color: blue; text-decoration: none;"><span style="color: blue;">💰 PAID - $29</span></a></td>
@@ -53,11 +58,6 @@
   <tr>
     <td><strong><a href="Discord%20Daily%20Digest%20for%20Multiple%20Google%20Analytics%20Accounts/">Analytics Digest</a></strong></td>
     <td>Discord daily digest for multiple Google Analytics accounts with automated reporting and insights. <a href="https://n8n.io/workflows/5470-discord-daily-digest-for-multiple-google-analytics-accounts/">View on n8n</a></td>
-    <td><span style="color: green;">✅ FREE</span></td>
-  </tr>
-  <tr>
-    <td><strong><a href="AI-Powered%20Blog%20Automation%20for%20WordPress/">Content Generator V2</a></strong></td>
-    <td>Scheduled AI content creation with RSS feed integration, automated WordPress publishing, and social media distribution for consistent blog output. <a href="https://n8n.io/workflows/5230-content-farming-ai-powered-blog-automation-for-wordpress/">View on n8n</a></td>
     <td><span style="color: green;">✅ FREE</span></td>
   </tr>
   <tr>
