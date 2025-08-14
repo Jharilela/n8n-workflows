@@ -1,6 +1,6 @@
 # n8n Automation Workflows by emp0
 
-[![n8n Creator Badge](https://img.shields.io/badge/n8n-Creator-blue?style=flat-square&logo=n8n)](https://n8n.io/creators/jay-emp0/) [![Workflows Published](https://img.shields.io/badge/Workflows-6+-brightgreen?style=flat-square)](#workflows) [![Discord Community](https://img.shields.io/badge/Discord-Community-7289da?style=flat-square&logo=discord)](https://discord.com/users/jym.god) [![Built with AI](https://img.shields.io/badge/Built%20with-AI-orange?style=flat-square)](#)
+[![n8n Creator Badge](https://img.shields.io/badge/n8n-Creator-blue?style=flat-square&logo=n8n)](https://n8n.io/creators/jay-emp0/) [![Workflows Published](https://img.shields.io/badge/Workflows-7+-brightgreen?style=flat-square)](#workflows) [![Discord Community](https://img.shields.io/badge/Discord-Community-7289da?style=flat-square&logo=discord)](https://discord.com/users/jym.god) [![Built with AI](https://img.shields.io/badge/Built%20with-AI-orange?style=flat-square)](#)
 
 > **Production-ready automation workflows** that solve real business problems using AI agents, integrations, and modern APIs.
 
@@ -23,6 +23,11 @@
   <tr>
     <td><strong><a href="AI%20Email%20Classifier/">AI Email Classifier</a></strong></td>
     <td>Automate email classification, prioritization, and spam detection across multiple Gmail accounts with AI-powered Discord notifications. <a href="https://n8n.io/workflows/5789-multi-account-email-classifier-with-ai-gmail-discord-and-google-sheets/">View on n8n</a></td>
+    <td><span style="color: green;">✅ FREE</span></td>
+  </tr>
+  <tr>
+    <td><strong><a href="Content%20Generator%20V1/">Content Generator V1</a></strong></td>
+    <td>Automated AI-powered blog creation with topic discovery, content generation, and WordPress publishing with featured images. Simple daily blog automation workflow. <a href="#">View on n8n</a></td>
     <td><span style="color: green;">✅ FREE</span></td>
   </tr>
   <tr>

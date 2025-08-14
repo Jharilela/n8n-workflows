@@ -1,0 +1,417 @@
+{
+  "name": "content generator v1",
+  "nodes": [
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.message.content }}",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "You are a seo specialist and experienced content writer. The user will provide you a blog topic and you will write a 1,500 word blog post in HTML format"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        416,
+        0
+      ],
+      "id": "9ee064e5-657a-4e2d-b219-81f32347df9d",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -64,
+        0
+      ],
+      "id": "2d69cbcd-2801-4dd8-948d-a62af9447805",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        416,
+        208
+      ],
+      "id": "8b3b434c-f63f-4274-8eac-b4b07332cfc7",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "WPek5vNr6BEqnAUD",
+          "name": "OpenAi account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "schemaType": "manual",
+        "inputSchema": "{\n\t\"type\": \"object\",\n\t\"properties\": {\n\t\t\"title\": {\n\t\t\t\"type\": \"string\"\n\t\t},\n\t\t\"content\": {\n\t\t\t\"type\": \"string\",\n          \"description\": \"html content of the blog\"\n\t\t}\n\t}\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        560,
+        208
+      ],
+      "id": "5e96e9bf-667c-4a6f-8688-2ab10b7d3dfd",
+      "name": "Structured Output Parser"
+    },
+    {
+      "parameters": {
+        "title": "={{ $json.output.title }}",
+        "additionalFields": {
+          "content": "={{ $json.output.content }}",
+          "categories": [
+            9
+          ],
+          "tags": [
+            13
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.wordpress",
+      "typeVersion": 1,
+      "position": [
+        752,
+        0
+      ],
+      "id": "e3b1d21b-9341-48e8-a943-9c68b30d8892",
+      "name": "Create a post",
+      "credentials": {
+        "wordpressApi": {
+          "id": "o9xGKvqHekSSt3Id",
+          "name": "Wordpress account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "image",
+        "prompt": "={{ $json.title.raw }}",
+        "options": {
+          "size": "1792x1024"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        896,
+        0
+      ],
+      "id": "a18c73e5-ba34-4a95-9901-c539b7950e72",
+      "name": "Generate an image",
+      "credentials": {
+        "openAiApi": {
+          "id": "WPek5vNr6BEqnAUD",
+          "name": "OpenAi account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "postId": "={{ $('Create a post').item.json.id }}",
+        "updateFields": {
+          "status": "publish"
+        }
+      },
+      "type": "n8n-nodes-base.wordpress",
+      "typeVersion": 1,
+      "position": [
+        1328,
+        0
+      ],
+      "id": "351bbf25-0dfb-49f4-b9aa-163e07c91922",
+      "name": "Update a post",
+      "credentials": {
+        "wordpressApi": {
+          "id": "ROMzk4TNprbiDIjp",
+          "name": "wp - account@gmail.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://articles.emp0.com/wp-json/wp/v2/posts/{{ $('Create a post').item.json.id }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "wordpressApi",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "featured_media",
+              "value": "={{ $json.id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "b6331535-8f26-4efb-a0f5-60ec97bad368",
+      "name": "Set Image",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        1184,
+        0
+      ],
+      "typeVersion": 4.2,
+      "credentials": {
+        "wordpressApi": {
+          "id": "o9xGKvqHekSSt3Id",
+          "name": "Wordpress account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://articles.emp0.com/wp-json/wp/v2/media",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "wordpressApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Disposition",
+              "value": "=attachment; filename=\"img-{{ $('Create a post').item.json.title.raw.replaceAll(\" \",\"-\") }}.jpg\""
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "binaryData",
+        "inputDataFieldName": "data",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1040,
+        0
+      ],
+      "id": "fd22cc2d-fc52-489a-8894-93b947ea9e82",
+      "name": "upload image",
+      "credentials": {
+        "wordpressApi": {
+          "id": "o9xGKvqHekSSt3Id",
+          "name": "Wordpress account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o-mini-search-preview",
+          "mode": "list",
+          "cachedResultName": "GPT-4O-MINI-SEARCH-PREVIEW"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "find an interesting topic regarding latest news today. Simple one line output"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        112,
+        0
+      ],
+      "id": "beacb31b-34c0-4842-abc7-516df8a3ed57",
+      "name": "Message a model",
+      "credentials": {
+        "openAiApi": {
+          "id": "WPek5vNr6BEqnAUD",
+          "name": "OpenAi account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Draft an article\n### Create a title and content for the new article",
+        "height": 512,
+        "width": 592,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        96,
+        -144
+      ],
+      "typeVersion": 1,
+      "id": "0673cfe2-ac26-43d8-b268-bb402d9b2472",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "## Publish to wordpress\n### Create a draft, upload image and publish the article",
+        "height": 512,
+        "width": 752,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        704,
+        -144
+      ],
+      "typeVersion": 1,
+      "id": "ad2f4e23-c807-42be-bd24-3b872dbbf11d",
+      "name": "Sticky Note1"
+    }
+  ],
+  "pinData": {
+    "Schedule Trigger": [
+      {
+        "json": {
+          "timestamp": "2025-08-14T05:30:00.507-04:00",
+          "Readable date": "August 14th 2025, 5:30:00 am",
+          "Readable time": "5:30:00 am",
+          "Day of week": "Thursday",
+          "Year": "2025",
+          "Month": "August",
+          "Day of month": "14",
+          "Hour": "05",
+          "Minute": "30",
+          "Second": "00",
+          "Timezone": "America/New_York (UTC-04:00)"
+        }
+      }
+    ]
+  },
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Message a model",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Create a post",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create a post": {
+      "main": [
+        [
+          {
+            "node": "Generate an image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate an image": {
+      "main": [
+        [
+          {
+            "node": "upload image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Image": {
+      "main": [
+        [
+          {
+            "node": "Update a post",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "upload image": {
+      "main": [
+        [
+          {
+            "node": "Set Image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Message a model": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "6a6176fb-43b0-4417-80f0-a0238da3c18d",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "52254486b159b349334953c1738da94e90477c7604aa8db2062d11afc0120739"
+  },
+  "id": "Anq2a50Rcp2Gr1xZ",
+  "tags": []
+}
