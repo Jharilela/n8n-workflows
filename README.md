@@ -65,6 +65,11 @@
     <td>Generate images via Replicate Flux models and upload to WordPress/Twitter. Built as an MCP module for on-demand image creation with cost-optimized model selection. <a href="https://n8n.io/workflows/7192">View on n8n</a></td>
     <td><span style="color: green;">✅ FREE</span></td>
   </tr>
+  <tr>
+    <td><strong><a href="Backup%20Postgres%20Table%20to%20GitHub%20in%20CSV%20Format/">Postgres GitHub Backup</a></strong></td>
+    <td>Daily automated backup of all PostgreSQL tables to GitHub as CSV files with version control. Never lose your database snapshots again! <a href="https://n8n.io/workflows/7419-daily-postgres-table-backup-to-github-in-csv-format/">View on n8n</a></td>
+    <td><span style="color: green;">✅ FREE</span></td>
+  </tr>
 </table>
 
 ---
