@@ -190,19 +190,149 @@ Cost: Free to register. Need to top up around $10, The monthly cost will be arou
 
 ### 4.2 MongoDB Atlas (Vector DB + Document Storage)
 
-1. Register at [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
-2. Create a cluster and add a database user.
-3. Whitelist your IP or set to allow all (`0.0.0.0/0`).
-4. Get the connection string (replace `<password>` and `<dbname>`).
-5. Create a **MongoDB** credential in n8n.
+MongoDB Atlas serves as both your vector database for embeddings and document storage for the workflow's content chunks. Here's how to set it up:
 
-Cost: Free for an M0 cluster with 500mb of memory, its more than enough for the first 3 months
+#### Step 4.2.1: Create MongoDB Atlas Account
+1. Register at [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
+2. Sign up for a free account using your email address
+3. Complete the account verification process
+
+#### Step 4.2.2: Create Your First Cluster
+1. After logging in, click **"Build a Database"**
+2. Select **"M0 Sandbox"** (Free tier)
+3. Choose your preferred cloud provider (AWS recommended)
+4. Select a region closest to your n8n deployment
+5. Give your cluster a name (e.g., `content-generator-cluster`)
+6. Click **"Create"**
+
+#### Step 4.2.3: Configure Database Access
+1. In the **"Security"** tab, click **"Database Access"**
+2. Click **"Add New Database User"**
+3. Choose **"Password"** authentication method
+4. Create a username (e.g., `n8n-user`)
+5. Generate a secure password and save it
+6. Set database user privileges to **"Read and write to any database"**
+7. Click **"Add User"**
+
+#### Step 4.2.4: Configure Network Access
+1. In the **"Security"** tab, click **"Network Access"**
+2. Click **"Add IP Address"**
+3. For development, click **"Allow Access from Anywhere"** (0.0.0.0/0)
+4. For production, add your specific n8n server IP address
+5. Click **"Confirm"**
+
+#### Step 4.2.5: Get Your Connection String
+1. Go to **"Deployment"** > **"Database"**
+2. Click **"Connect"** on your cluster
+3. Select **"Connect your application"**
+4. Choose **"Node.js"** and version **"4.1 or later"**
+5. Copy the connection string
+6. Replace `<password>` with your database user password
+7. Replace `<dbname>` with `contentgen` (or your preferred database name)
+
+Example connection string:
+```
+mongodb+srv://n8n-user:yourpassword@content-generator-cluster.abc123.mongodb.net/contentgen?retryWrites=true&w=majority
+```
+
+#### Step 4.2.6: Create MongoDB Credential in n8n
+1. In your n8n instance, go to **"Credentials"**
+2. Click **"Add Credential"**
+3. Search for and select **"MongoDB"**
+4. Enter your connection string from Step 4.2.5
+5. Test the connection to ensure it works
+6. Save the credential with a descriptive name like `MongoDB-ContentGen`
+
+IMPORTANT: Run step 1 of the workflow to ensure we have some data in the collection `news`
+
+#### Step 4.2.7: Set Up Vector Search Index (Critical for AI Functionality)
+
+The workflow requires vector indexes for semantic search capabilities. Here's how to create them:
+
+##### Navigate to Atlas Search
+1. In your MongoDB Atlas dashboard, go to your cluster
+2. Click on the **"Search"** tab
+3. Click **"Create Search Index"**
+
+![Vector Index Setup Step 1](https://articles.emp0.com/wp-content/uploads/2025/08/setup-mongodb-vector-index-1.png)
+*Navigate to the Atlas Search section to begin creating your vector search index*
+
+##### Choose Index Configuration Method
+1. Select **"JSON Editor"** for advanced configuration
+2. Choose your database (e.g., `contentgen`)
+3. Select the collection: **`article_chunks`**
+
+![Vector Index Setup Step 2](https://articles.emp0.com/wp-content/uploads/2025/08/setup-mongodb-vector-index-2.png)
+*Use the JSON Editor to configure your vector index with precise settings for the article_chunks collection*
+
+##### Configure the Vector Index
+Create vector index:
+
+![Vector Index Setup Step 3](https://articles.emp0.com/wp-content/uploads/2025/08/setup-mongodb-vector-index-3.png)
+*Configure the vector index with 1536 dimensions for OpenAI embeddings and cosine similarity for accurate semantic search*
+
+##### Review and Name Your Index
+1. Name your index: **`vector_search_index`**
+2. Review the configuration to ensure it matches your needs
+3. Click **"Create Search Index"**
+
+![Vector Index Setup Step 4](https://articles.emp0.com/wp-content/uploads/2025/08/setup-mongodb-vector-index-4.png)
+*Name your vector index clearly and review all settings before creation*
+
+##### Monitor Index Creation
+1. Wait for the index to build (this may take 2-5 minutes)
+2. The status will show **"Active"** when ready
+3. You can monitor the progress in the Atlas Search dashboard
+
+![Vector Index Setup Step 5](https://articles.emp0.com/wp-content/uploads/2025/08/setup-mongodb-vector-index-5.png)
+*Monitor the index creation progress - wait for "Active" status before using the workflow*
+
+##### Verify Index is Working
+1. Once active, you can test the index using the Atlas Search playground
+2. Verify that vector searches return relevant results
+3. The index should now be ready for the n8n workflow
+
+![Vector Index Setup Step 6](https://articles.emp0.com/wp-content/uploads/2025/08/setup-mongodb-vector-index-6.png)
+*Confirm your vector index is active and ready - this enables semantic search for topic clustering and content generation*
+
+#### Step 4.2.8: Initialize Required Collections
+The workflow automatically creates these collections, but you can verify them in MongoDB Compass or Atlas UI:
+
+- **`article_chunks`**: Stores vectorized content chunks from RSS feeds (requires vector index)
+- **`generated_articles`**: Stores completed articles and metadata  
+- **`topics`**: Stores extracted topics and clustering data
+
+**Cost**: Free for an M0 cluster with 500MB storage - sufficient for the first 3-6 months of operation
+
+⚠️ **Important Notes**:
+- Vector search requires at least an M10 cluster for production workloads
+- The M0 free tier supports Atlas Search but with limited performance
+- For high-volume content generation, upgrade to M10+ clusters
+- The vector index is essential - the workflow will fail without it
+- Monitor your storage usage as embeddings consume significant space
 
 ### 4.3 Leonardo AI (Image Generation)
 
-1. Sign up at [Leonardo AI](https://app.leonardo.ai)
-2. Navigate to **API Access** and copy your API key.
-3. Add it to your environment or as a credential in n8n via HTTP Request node headers.
+To create your Leonardo AI credential, follow these steps:
+
+Open your "Leonardo" `HTTP Header Auth` credential in n8n and ensure you have added the required authentication header. For Leonardo.Ai, this is typically an API key sent as a header, for example:
+
+Name: `Authorization`
+Value: `Bearer YOUR_API_KEY`
+You can edit your credential and add this in the "headers" section as:
+
+```json
+{
+  "headers": {
+    "Authorization": "Bearer YOUR_API_KEY"
+  }
+}
+```
+Replace `YOUR_API_KEY` with your actual Leonardo.Ai API key.
+
+After updating, save the credential and re-run your workflow.
+
+⚠️ Make sure the word “Bearer ” is included before your API key, otherwise the authentication will not work.  
 
 Cost: $10 but realistically will cost $20 per month
 
