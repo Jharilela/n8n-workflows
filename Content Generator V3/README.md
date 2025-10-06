@@ -2,7 +2,7 @@
 
 ## Introduction
 
-![Content farming v3 banner](https://articles.emp0.com/wp-content/uploads/2025/08/content-generator-v3-gumroad-banner.png)
+[![Watch the video](https://img.youtube.com/vi/lg80KikzaLg/maxresdefault.jpg)](https://www.youtube.com/watch?v=lg80KikzaLg)
 
 This is a fully automated AI powered blog content generation and distribution workflow built for the n8n automation platform. It's designed for solo founders, creators, indie hackers, marketers, SEO consultants, or lean startup teams who run multiple projects and want to consistently publish high quality, search optimized articles without relying on a human marketing team.
 
