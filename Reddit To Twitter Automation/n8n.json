@@ -1,0 +1,515 @@
+{
+  "name": "Reddit To Twitter Automation",
+  "nodes": [
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "resource": "message",
+        "guildId": {
+          "__rl": true,
+          "value": "1363068664886329397",
+          "mode": "list",
+          "cachedResultName": "Emp0",
+          "cachedResultUrl": "https://discord.com/channels/1363068664886329397"
+        },
+        "channelId": {
+          "__rl": true,
+          "value": "1409452059086028953",
+          "mode": "list",
+          "cachedResultName": "twitter",
+          "cachedResultUrl": "https://discord.com/channels/1363068664886329397/1409452059086028953"
+        },
+        "content": "=",
+        "options": {},
+        "embeds": {
+          "values": [
+            {
+              "description": "={{ $if($json.subreddit, '> Inspired from /r/'+$json.subreddit) }}",
+              "author": "=",
+              "color": "#00E1FF",
+              "timestamp": "={{ $now }}",
+              "title": "={{ $json[\"PAST TWEETS\"] }}",
+              "url": "=https://x.com/username/status/{{ $('Creates the tweet1').item.json.id }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.discord",
+      "typeVersion": 2,
+      "position": [
+        1936,
+        1808
+      ],
+      "id": "736df278-cacf-41ca-accb-946cfc538731",
+      "name": "Send a message1",
+      "webhookId": "c534d3fe-9ce7-4fb9-956c-46849b01c26e",
+      "credentials": {
+        "discordOAuth2Api": {
+          "id": "aAorRULaRsUXUcmc",
+          "name": "Discord"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "316d8d54-ce09-409b-ae4e-a2dffe41d011",
+              "name": "tweet",
+              "value": "={{$json.output.tweet}}",
+              "type": "string"
+            },
+            {
+              "id": "69c01373-920f-4b2a-92bf-9a3f2fad16b2",
+              "name": "subreddit",
+              "value": "={{$json.output.subreddit || null}}",
+              "type": "string"
+            },
+            {
+              "id": "a8b984bf-a55d-4ac3-9afc-d2fd95d1336c",
+              "name": "post_id",
+              "value": "={{ $json.output.id || null}}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1392,
+        1808
+      ],
+      "id": "5c20b280-18b5-4704-9aa7-cc2a3a5e8cfc",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1DbPO7U68-YlOHhb8fIlGu2ImD_N-cm0E-8pwc7qnAo4",
+          "mode": "list",
+          "cachedResultName": "Reddit To Twitter Automation",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1DbPO7U68-YlOHhb8fIlGu2ImD_N-cm0E-8pwc7qnAo4/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "posts",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1DbPO7U68-YlOHhb8fIlGu2ImD_N-cm0E-8pwc7qnAo4/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Date": "={{$now.format('dd/MM/yyyy')}}",
+            "PAST TWEETS": "={{ $('Edit Fields1').item.json.tweet }}",
+            "subreddit": "={{ $('Edit Fields1').item.json.subreddit }}",
+            "post_id": "={{ $('Edit Fields1').item.json.post_id }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "PAST TWEETS",
+              "displayName": "PAST TWEETS",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Date",
+              "displayName": "Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "subreddit",
+              "displayName": "subreddit",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "post_id",
+              "displayName": "post_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1760,
+        1808
+      ],
+      "id": "ce49ba6d-d37f-40b3-856f-a075a21429b8",
+      "name": "Append row in sheet1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "dNmdYyKDCj9rTeSw",
+          "name": "Gsheet"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "subreddit": "={{$fromAI('subreddit','name of the subreddit','string')}}",
+        "limit": 10,
+        "filters": {
+          "category": "rising"
+        }
+      },
+      "type": "n8n-nodes-base.redditTool",
+      "typeVersion": 1,
+      "position": [
+        896,
+        1984
+      ],
+      "id": "9318add6-52e4-47d5-97d2-6b2ae2339fcb",
+      "name": "Get many posts in Reddit1",
+      "credentials": {
+        "redditOAuth2Api": {
+          "id": "rIyaOqpm6SelzXHv",
+          "name": "Reddit account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "schemaType": "manual",
+        "inputSchema": "{\n\t\"type\": \"object\",\n\t\"properties\": {\n\t\t\"tweet\": {\n\t\t\t\"type\": \"string\"\n\t\t},\n      \"subreddit\": {\n\t\t\t\"type\": \"string\"\n\t\t},\n\t\t\"id\": {\n\t\t\t\"type\": \"string\", \n          \"description\": \"id of the post on reddit\"\n\t\t}\n\t},\n  \"required\": [\"tweet\"]\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        1232,
+        1984
+      ],
+      "id": "8de17386-27da-4e7d-b5e9-2c7cf56dffa0",
+      "name": "Structured Output Parser2"
+    },
+    {
+      "parameters": {
+        "text": "={{ $json.tweet }}",
+        "additionalFields": {
+          "attachments": "={{ $json.image_id || null }}"
+        }
+      },
+      "type": "n8n-nodes-base.twitter",
+      "typeVersion": 2,
+      "position": [
+        1568,
+        1808
+      ],
+      "id": "df143003-0848-4339-a5a6-65c5abae846e",
+      "name": "Creates the tweet1",
+      "credentials": {
+        "twitterOAuth2Api": {
+          "id": "Ig60ncJDzlhLU0Ap",
+          "name": "X"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "content": "# Repurpose a content from reddit",
+        "height": 416,
+        "width": 688,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        688,
+        1728
+      ],
+      "typeVersion": 1,
+      "id": "94c6d34d-ffc3-4845-b854-d12ac465e515",
+      "name": "Sticky Note9"
+    },
+    {
+      "parameters": {
+        "content": "# Randomly decide subreddit",
+        "height": 416,
+        "width": 192,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        448,
+        1728
+      ],
+      "typeVersion": 1,
+      "id": "4bdf79cb-9235-433e-b75b-f3674b8e00a3",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 2
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        288,
+        1984
+      ],
+      "id": "02011a01-73ce-4a3b-b65a-9fb42b670ad5",
+      "name": "Schedule Trigger1"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        736,
+        1984
+      ],
+      "id": "f5668e96-c672-49ad-995e-a852fe3b14e7",
+      "name": "Google Gemini Chat Model1",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "VogGayxALH0ssmBl",
+          "name": "Gemini"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1DbPO7U68-YlOHhb8fIlGu2ImD_N-cm0E-8pwc7qnAo4",
+          "mode": "list",
+          "cachedResultName": "Reddit To Twitter Automation",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1DbPO7U68-YlOHhb8fIlGu2ImD_N-cm0E-8pwc7qnAo4/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "posts",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1DbPO7U68-YlOHhb8fIlGu2ImD_N-cm0E-8pwc7qnAo4/edit#gid=0"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "subreddit",
+              "lookupValue": "={{ $fromAI('subreddit', `subreddit`, 'string') }}"
+            },
+            {
+              "lookupColumn": "post_id",
+              "lookupValue": "={{ $fromAI('id', `id of the post`, 'string') }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        1056,
+        1984
+      ],
+      "id": "d9caf055-535f-44cb-91dc-576185e6b612",
+      "name": "read database2",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "dNmdYyKDCj9rTeSw",
+          "name": "Gsheet"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.topic }}",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "=You are a ghostwriter who creates short, raw, non-repetitive tweets. \nYour job: generate a tweet refereingcing a post you saw on reddit\n\nYou have access to 3 tools to \n1. get trending posts from a subreddit\n2. get a list of recently posted tweets in the users account\n3. log a tweet based on a subredit post_id so that we dont mrecreate a similar tweet based on the post_id\n\nRules:  \n- Get the subreddit from the user\n- Fetch trending subreddit posts from the database reddit tool.\n- Fetch the past tweets that has been posted and logged to the database\n- Choose a subreddit post_id to write about and make sure that post_id in that subreddit has never been used before to write a tweet\n- Generate a unique tweet. Write from the first person point of view. something like i discovered this cool workflow on reddit or this tool. Limit to 200 characters\n- Tweets must be punchy, edgy, and written in modern Twitter style.  Have a strong opinion whether u think its cool or not. you are very edgy programmer turned enterpreneur but avoid all words of profanity, vulgar and sexual words\n- Keep it concise (2–4 lines). No hashtags. Minimal emojis (only if it fits). Ask for opinions. Always state what u saw\n- Use a separate line for each short phrase or thought"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        944,
+        1808
+      ],
+      "id": "071d686f-3c23-4955-9eec-cc6ce700ea47",
+      "name": "Tweet maker1"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Templates for normal tweets\nconst subreddits = [\n  \"n8n\",\n  \"microsaas\",\n  \"SaaS\",\n  \"automation\",\n  \"n8n_ai_agents\"\n];\n\n\nfunction getRandom(arr) {\n  return arr[Math.floor(Math.random() * arr.length)];\n}\n\nlet topic;\ntopic = getRandom(subreddits);\n// prevent repeats\n\nreturn [{ json: { topic} }];\n\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        496,
+        1984
+      ],
+      "id": "897109eb-405c-4bba-8d6b-a121b0bb2274",
+      "name": "Code1"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "Creates the tweet1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append row in sheet1": {
+      "main": [
+        [
+          {
+            "node": "Send a message1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Creates the tweet1": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger1": {
+      "main": [
+        [
+          {
+            "node": "Code1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get many posts in Reddit1": {
+      "ai_tool": [
+        [
+          {
+            "node": "Tweet maker1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser2": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Tweet maker1",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Tweet maker1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "read database2": {
+      "ai_tool": [
+        [
+          {
+            "node": "Tweet maker1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tweet maker1": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code1": {
+      "main": [
+        [
+          {
+            "node": "Tweet maker1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": "ernonQOxi07n6WGi",
+    "timeSavedPerExecution": 5
+  },
+  "versionId": "32cf5146-d929-4242-91a9-0bb6fe53aa94",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "52254486b159b349334953c1738da94e90477c7604aa8db2062d11afc0120739"
+  },
+  "id": "TdUwxmTIJnTwQhJe",
+  "tags": [
+    {
+      "createdAt": "2025-05-06T11:04:59.376Z",
+      "updatedAt": "2025-05-06T11:04:59.376Z",
+      "id": "GcbJtfnHd72wKEMY",
+      "name": "admin"
+    }
+  ]
+}

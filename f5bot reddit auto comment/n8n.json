@@ -1,0 +1,872 @@
+{
+  "name": "Reddit Assistant",
+  "nodes": [
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "simple": false,
+        "filters": {
+          "sender": "admin@f5bot.com"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmailTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        -2128,
+        512
+      ],
+      "id": "29031df0-dd8c-4f96-bf92-39f757d73099",
+      "name": "Gmail Trigger",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "2tse7fIyCdDwG3Zm",
+          "name": "Gmail"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "f58cb366-4c57-459e-b04c-5265de98f6fd",
+              "name": "Text",
+              "value": "={{ $json.text }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -1744,
+        512
+      ],
+      "id": "f7237452-ff16-4c73-8aeb-5efacabb8ba8",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "subreddit": "={{ $json.subreddit }}",
+        "postId": "={{ $json.postId }}"
+      },
+      "type": "n8n-nodes-base.reddit",
+      "typeVersion": 1,
+      "position": [
+        -1184,
+        672
+      ],
+      "id": "3d214040-c455-4190-a2b7-68162c279ded",
+      "name": "Get a post",
+      "credentials": {
+        "redditOAuth2Api": {
+          "id": "rIyaOqpm6SelzXHv",
+          "name": "Reddit account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        -704,
+        528
+      ],
+      "id": "4986c00a-0ad2-4372-b12d-2969211130c0",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "jsCode": "let posts = [];\nconst input = JSON.stringify($input.first().json.urls);\n\n// Match all encoded Reddit URLs from F5Bot links\nconst regex = /https:\\/\\/f5bot\\.com\\/url\\?u=([^&\\s>]+)/g;\nlet match;\n\nwhile ((match = regex.exec(input)) !== null) {\n  try {\n    const decoded = decodeURIComponent(match[1]);\n    if (decoded.includes(\"reddit.com/r/\")) {\n      const redditMatch = decoded.match(/reddit\\.com\\/r\\/([^/]+)\\/comments\\/([^/]+)/);\n      if (redditMatch) {\n        const subreddit = redditMatch[1];\n        const postId = redditMatch[2];\n        posts.push({ subreddit, postId, url: decoded });\n      }\n    }\n  } catch (e) {}\n}\n\n// remove duplicates\nconst uniquePosts = [];\nconst seen = new Set();\nfor (const p of posts) {\n  if (!seen.has(p.url)) {\n    seen.add(p.url);\n    uniquePosts.push(p);\n  }\n}\n\nreturn { \n  json: uniquePosts[0] \n};\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1440,
+        512
+      ],
+      "id": "0f224f38-0887-400b-a395-787c6a119f75",
+      "name": "Code in JavaScript1"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "33942da9-064a-4bdb-9848-871cdc3c7e75",
+              "leftValue": "=Altruistic-Brother37",
+              "rightValue": "={{ $json.author }}",
+              "operator": {
+                "type": "string",
+                "operation": "notEquals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        -1040,
+        672
+      ],
+      "id": "52b466d0-c09f-48e1-b8ba-7284cdece760",
+      "name": "Filter Own Posts"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Title: {{ $json.Title }}\nText: {{ $json.Text }}\nsubreddit_rules: {{ JSON.stringify($json.subreddit_rules) }}\nsubreddit: {{ JSON.stringify($json.subreddit_about) }}\nnotes: {{ $json.notes || null }}\n",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "=Act as a skilled Reddit indian marketing expert who writes authentic, first-person comments that feel human and community-friendly while tactically promoting a product when rules allow.\n\nTask\nCraft a short Reddit comment reply (max 255 characters) that fits naturally in conversation threads, follows subreddit rules, and—if permitted—casually promotes one product with its link.\nIf promo isn’t allowed, reply with relatable insight or story instead. If links isnt allowed, no need to use links but you must always get a list of products from the Google Sheets Tool\n\nContext\nYou’ll receive:\n- Post_Title and Post_Text → the Reddit post content\n- rules_summary → subreddit rules\n- Access to a Google Sheets Tool containing product, service, content names and URLs of things i make\n\nReasoning\n- Read the post title + text to understand tone and user intent.\n- Check rules_summary for promo policy.\n- If self-promo allowed → pick one product name + link via the Google Sheets Tool.\n- If not allowed → skip product mention and write useful, personal comment.\n- Write in first person; sound casual, experienced, and fast-typing (e.g., “u,” “ur,” “idk”).\n- Avoid buzzwords, fluff, or fake enthusiasm—keep it natural, human, and valuable.\n- Make sure tone matches a senior direct-marketing pro chatting informally.\n\nOutput Format\n- Return only the Reddit comment text (no markdown, no explanation).\n- Keep under 255 characters.\n- Use short, quick sentences.\n- First-person only.\n\nStop Conditions\n✅ Output stops once one valid, rule-compliant Reddit comment is produced.\n✅ Skip promotion if forbidden.\n✅ No external text, tags, or formatting beyond the comment itself.",
+          "returnIntermediateSteps": true
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        -496,
+        528
+      ],
+      "id": "df891fe9-b3f3-43d2-a462-ada80c72640b",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "1083ab50-5f1c-4f6e-8695-f71578c072c4",
+              "name": "Title",
+              "value": "={{ $json.title }}",
+              "type": "string"
+            },
+            {
+              "id": "84d5cea9-20cd-4f31-acbd-90a7cd9f598e",
+              "name": "Text",
+              "value": "={{ $json.selftext }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -896,
+        672
+      ],
+      "id": "37241eeb-fa26-4dd9-87e9-05624d148bf8",
+      "name": "Input for AI"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-5-nano",
+          "mode": "list",
+          "cachedResultName": "gpt-5-nano"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -560,
+        800
+      ],
+      "id": "b94bfefa-b2af-4e6a-a011-4cc13887dd8f",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "0h6ODbQuIzgmJQq1",
+          "name": "OpenAi account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "postComment",
+        "postId": "={{ $('Get a post').item.json.id }}",
+        "commentText": "={{ $json.output.comment }}"
+      },
+      "type": "n8n-nodes-base.reddit",
+      "typeVersion": 1,
+      "position": [
+        -128,
+        528
+      ],
+      "id": "806e4ba5-0de3-46cc-833d-48f9007beea7",
+      "name": "Create a comment in a post",
+      "credentials": {
+        "redditOAuth2Api": {
+          "id": "rIyaOqpm6SelzXHv",
+          "name": "Reddit account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "resource": "message",
+        "guildId": {
+          "__rl": true,
+          "value": "1363068664886329397",
+          "mode": "list",
+          "cachedResultName": "Emp0",
+          "cachedResultUrl": "https://discord.com/channels/1363068664886329397"
+        },
+        "channelId": {
+          "__rl": true,
+          "value": "1409452042946347048",
+          "mode": "list",
+          "cachedResultName": "reddit",
+          "cachedResultUrl": "https://discord.com/channels/1363068664886329397/1409452042946347048"
+        },
+        "options": {},
+        "embeds": {
+          "values": [
+            {
+              "description": "=/r/{{ $('Code in JavaScript1').first().json.subreddit }}\n\n> {{ $('AI Agent').item.json.output.comment }}\n\n{{ $('Merge').item.json.Text }}",
+              "author": "Reddit Automation Bot",
+              "title": "={{ $('Get a post').item.json.title }}",
+              "url": "={{ $('Code in JavaScript1').first().json.url }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.discord",
+      "typeVersion": 2,
+      "position": [
+        48,
+        528
+      ],
+      "id": "a13cff3f-141e-41ec-a8aa-072cdc71123c",
+      "name": "Send a message",
+      "webhookId": "c534d3fe-9ce7-4fb9-956c-46849b01c26e",
+      "credentials": {
+        "discordOAuth2Api": {
+          "id": "aAorRULaRsUXUcmc",
+          "name": "Discord"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "schemaType": "manual",
+        "inputSchema": "{\n\t\"type\": \"object\",\n\t\"properties\": {\n\t\t\"comment\": {\n\t\t\t\"type\": \"string\"\n        }\n\t\t\n\t}\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        -224,
+        800
+      ],
+      "id": "11daf05f-5194-4c93-ab5a-f19f15c8c666",
+      "name": "Structured Output Parser"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "82d428d7-4bd9-4ed8-bcdd-8481c9c2d957",
+              "name": "subreddit_about",
+              "value": "={{ $('Subreddit about').first().json }}",
+              "type": "object"
+            },
+            {
+              "id": "32b21d89-2cec-438f-a4b6-dbf8e5fc4f4e",
+              "name": "subreddit_rules",
+              "value": "={{ $json }}",
+              "type": "object"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -896,
+        512
+      ],
+      "id": "92689bbf-300e-48be-b924-fad10f6efea7",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "source": "googleSheets",
+        "documentId": {
+          "__rl": true,
+          "value": "1GYCExj_vkpQi_xtSJDv0EGsKJoPXo8GFf7JerKZpVFg",
+          "mode": "list",
+          "cachedResultName": "Blog Automation",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1GYCExj_vkpQi_xtSJDv0EGsKJoPXo8GFf7JerKZpVFg/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1627839178,
+          "mode": "list",
+          "cachedResultName": "reddit evaluations",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1GYCExj_vkpQi_xtSJDv0EGsKJoPXo8GFf7JerKZpVFg/edit#gid=1627839178"
+        }
+      },
+      "type": "n8n-nodes-base.evaluationTrigger",
+      "typeVersion": 4.7,
+      "position": [
+        -2112,
+        704
+      ],
+      "id": "bb820e45-6899-45a4-b8bf-07e4d638ba2e",
+      "name": "When fetching a dataset row",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "dNmdYyKDCj9rTeSw",
+          "name": "Gsheet"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1DbPO7U68-YlOHhb8fIlGu2ImD_N-cm0E-8pwc7qnAo4",
+          "mode": "list",
+          "cachedResultName": "Twitter Automation",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1DbPO7U68-YlOHhb8fIlGu2ImD_N-cm0E-8pwc7qnAo4/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 814034323,
+          "mode": "list",
+          "cachedResultName": "promo",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1DbPO7U68-YlOHhb8fIlGu2ImD_N-cm0E-8pwc7qnAo4/edit#gid=814034323"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        -400,
+        800
+      ],
+      "id": "bea43dd9-92b4-4811-944d-de8f76a83a90",
+      "name": "Get Google Sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "dNmdYyKDCj9rTeSw",
+          "name": "Gsheet"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "setMetrics",
+        "metric": "categorization",
+        "expectedAnswer": "false",
+        "actualAnswer": "={{ $('AI Agent').first().json.output.comment.includes(\"—\") }}",
+        "options": {
+          "metricName": "contains dash"
+        }
+      },
+      "type": "n8n-nodes-base.evaluation",
+      "typeVersion": 4.8,
+      "position": [
+        240,
+        528
+      ],
+      "id": "ccfc1730-f266-45cf-ab70-f786c361e96f",
+      "name": "Evaluate text format"
+    },
+    {
+      "parameters": {
+        "operation": "setMetrics",
+        "metric": "categorization",
+        "expectedAnswer": "true",
+        "actualAnswer": "={{ $('AI Agent').first().json.output.comment.includes(\"https://\") }}",
+        "options": {
+          "metricName": "contains link"
+        }
+      },
+      "type": "n8n-nodes-base.evaluation",
+      "typeVersion": 4.8,
+      "position": [
+        240,
+        704
+      ],
+      "id": "b033365a-04ce-4102-9a13-8f9607ff95fd",
+      "name": "Evaluate link in text"
+    },
+    {
+      "parameters": {
+        "operation": "setMetrics",
+        "metric": "toolsUsed",
+        "expectedTools": "Get Google Sheet",
+        "intermediateSteps": "={{ $('AI Agent').first().json.intermediateSteps }}",
+        "options": {
+          "metricName": "Tools Used"
+        }
+      },
+      "type": "n8n-nodes-base.evaluation",
+      "typeVersion": 4.8,
+      "position": [
+        240,
+        880
+      ],
+      "id": "a8a89f02-6394-4b55-adf2-d1adf04bcb70",
+      "name": "Evaluation ghseet tool"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "numberInputs": 3,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        448,
+        544
+      ],
+      "id": "1fd1a10c-19e1-4fd2-9ffc-bb9a3a2849e2",
+      "name": "Merge Evaluations"
+    },
+    {
+      "parameters": {
+        "resource": "subreddit",
+        "content": "rules",
+        "subreddit": "={{ $json.subreddit }}"
+      },
+      "type": "n8n-nodes-base.reddit",
+      "typeVersion": 1,
+      "position": [
+        -1184,
+        512
+      ],
+      "id": "90eb0d88-d9f4-4f7a-8c24-ce73284eebc6",
+      "name": "Subreddit about",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "resource": "subreddit",
+        "content": "rules",
+        "subreddit": "={{ $('Code in JavaScript1').item.json.subreddit }}"
+      },
+      "type": "n8n-nodes-base.reddit",
+      "typeVersion": 1,
+      "position": [
+        -1040,
+        512
+      ],
+      "id": "68fdc148-1a92-4c55-831d-2985517c66ea",
+      "name": "Subreddit rules",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "source": "googleSheets",
+        "documentId": {
+          "__rl": true,
+          "value": "1GYCExj_vkpQi_xtSJDv0EGsKJoPXo8GFf7JerKZpVFg",
+          "mode": "list",
+          "cachedResultName": "Blog Automation",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1GYCExj_vkpQi_xtSJDv0EGsKJoPXo8GFf7JerKZpVFg/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1627839178,
+          "mode": "list",
+          "cachedResultName": "reddit evaluations",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1GYCExj_vkpQi_xtSJDv0EGsKJoPXo8GFf7JerKZpVFg/edit#gid=1627839178"
+        },
+        "outputs": {
+          "values": [
+            {
+              "outputName": "output",
+              "outputValue": "={{ $('AI Agent').first().json.output.comment }}"
+            },
+            {
+              "outputName": "contains link",
+              "outputValue": "={{ $json[\"contains link\"] }}"
+            },
+            {
+              "outputName": "contains dash",
+              "outputValue": "={{ $json[\"contains dash\"] }}"
+            },
+            {
+              "outputName": "Tools Used",
+              "outputValue": "={{ $json[\"Tools Used\"] }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.evaluation",
+      "typeVersion": 4.8,
+      "position": [
+        624,
+        560
+      ],
+      "id": "640958ad-76d6-4c32-941f-28e37461d0f8",
+      "name": "Set Evaluation Output",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "dNmdYyKDCj9rTeSw",
+          "name": "Gsheet"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const text = $json.Text || '';\nconst urls = Array.from(text.matchAll(/https?:\\/\\/[^\\n\\s]+/g)).map(match => match[0]);\nreturn [{ urls }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1600,
+        512
+      ],
+      "id": "e6583917-e190-4659-a9fb-7c7ab112ccd7",
+      "name": "Filter Subreddit URLs"
+    },
+    {
+      "parameters": {
+        "unit": "minutes"
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        -1920,
+        512
+      ],
+      "id": "5b2b514a-2171-4781-a921-ccd36b513848",
+      "name": "Delay 5m",
+      "webhookId": "d9738785-7233-424a-a110-38fffe4d801e"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Gmail Trigger": {
+      "main": [
+        [
+          {
+            "node": "Delay 5m",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Filter Subreddit URLs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript1": {
+      "main": [
+        [
+          {
+            "node": "Subreddit about",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Get a post",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get a post": {
+      "main": [
+        [
+          {
+            "node": "Filter Own Posts",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter Own Posts": {
+      "main": [
+        [
+          {
+            "node": "Input for AI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Input for AI": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Create a comment in a post",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create a comment in a post": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a message": {
+      "main": [
+        [
+          {
+            "node": "Evaluate text format",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Evaluate link in text",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Evaluation ghseet tool",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When fetching a dataset row": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Google Sheet": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Evaluate text format": {
+      "main": [
+        [
+          {
+            "node": "Merge Evaluations",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Evaluate link in text": {
+      "main": [
+        [
+          {
+            "node": "Merge Evaluations",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Evaluation ghseet tool": {
+      "main": [
+        [
+          {
+            "node": "Merge Evaluations",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "Merge Evaluations": {
+      "main": [
+        [
+          {
+            "node": "Set Evaluation Output",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Subreddit about": {
+      "main": [
+        [
+          {
+            "node": "Subreddit rules",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Subreddit rules": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Evaluation Output": {
+      "main": [
+        []
+      ]
+    },
+    "Filter Subreddit URLs": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delay 5m": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false,
+    "errorWorkflow": "ernonQOxi07n6WGi",
+    "timeSavedPerExecution": 10
+  },
+  "versionId": "22fd5fac-f92d-4776-beb1-647c64077171",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "52254486b159b349334953c1738da94e90477c7604aa8db2062d11afc0120739"
+  },
+  "id": "GrveDEE7fH9mRpAI",
+  "tags": [
+    {
+      "createdAt": "2025-05-06T11:04:25.307Z",
+      "updatedAt": "2025-05-06T11:04:25.307Z",
+      "id": "ieqEVthNwLDfYSc1",
+      "name": "Emp0"
+    }
+  ]
+}
