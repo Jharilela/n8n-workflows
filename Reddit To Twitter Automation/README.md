@@ -1,4 +1,4 @@
-Automatically turns trending Reddit posts into **punchy, first-person tweets** powered by **Google Gemini AI**, **Reddit**, and **Twitter API**, with Google Sheets logging and Discord notifications.
+Automatically turns trending Reddit posts into **punchy, first-person tweets** powered by **Google Gemini AI**, **Reddit**, and **Twitter API**, with Google Sheets logging.
 
 ---
 
@@ -14,13 +14,12 @@ It’s perfect for creators, marketers, or founders who want to **automate conte
 3. Check your Google Sheet to avoid reusing the same Reddit post.  
 4. Publish to Twitter automatically.  
 5. Log tweet + Reddit reference in Google Sheets.  
-6. Notify you via Discord.
 
 ---
 
 ## 🧠 Workflow Diagram
 
-![Workflow Diagram](https://articles.emp0.com/wp-content/uploads/2025/10/reddit-twitter-workflow.png)
+![Workflow Diagram](https://articles.emp0.com/wp-content/uploads/2025/10/reddit-twitter-workflow-1.png)
 
 ---
 
@@ -30,8 +29,7 @@ It’s perfect for creators, marketers, or founders who want to **automate conte
 2️⃣ It picks a subreddit (like `r/automation`, `r/n8n`, `r/SaaS`).  
 3️⃣ Gemini AI analyzes a rising Reddit post and writes a **fresh, short tweet**.  
 4️⃣ The system checks your **Google Sheet** to ensure it hasn’t used that Reddit post before.  
-5️⃣ Once validated, the tweet is **published via Twitter API** and **logged**.  
-6️⃣ A Discord message confirms the tweet, with a link and subreddit reference.
+5️⃣ Once validated, the tweet is **published via Twitter API** and **logged**. 
 
 ---
 
@@ -63,7 +61,6 @@ Each tweet is automatically logged for version control and duplication checks.
 | **Structured Output Parser** | Ensures consistent tweet formatting (tweet text, subreddit, post ID). |
 | **Twitter Node** | Publishes the AI-generated tweet. |
 | **Append Row in Sheet** | Logs the tweet with date, subreddit, and post ID. |
-| **Discord Node** | Sends notification of the posted tweet. |
 
 ---
 
@@ -78,7 +75,6 @@ Each tweet is automatically logged for version control and duplication checks.
 | **Reddit OAuth2 API** | To fetch posts |
 | **Twitter (X) API OAuth2** | To publish tweets |
 | **Google Sheets API** | For logging and duplication tracking |
-| **Discord OAuth2** | For notification messages |
 
 ---
 
@@ -91,7 +87,6 @@ Each tweet is automatically logged for version control and duplication checks.
    - Reddit → `Reddit account`  
    - Twitter → `X`  
    - Google Sheets → `Gsheet`  
-   - Discord → `Discord`  
 
 ---
 
@@ -122,11 +117,3 @@ const subreddits = [
   "automation",
   "n8n_ai_agents"
 ];
-
----
-
-## 🌐 Links
-
-- 💼 [Emp0 — AI Revenue Team](https://emp0.com)  
-- 🧠 [Content Farming v3 Workflow](https://0emp0.gumroad.com/l/content-farming-v3)  
-- 💬 [Discord Community](https://discord.gg/emp0)  

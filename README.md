@@ -1,6 +1,6 @@
 # n8n Automation Workflows by emp0
 
-[![n8n Creator Badge](https://img.shields.io/badge/n8n-Creator-blue?style=flat-square&logo=n8n)](https://n8n.io/creators/jay-emp0/) [![Workflows Published](https://img.shields.io/badge/Workflows-7+-brightgreen?style=flat-square)](#workflows) [![Discord Community](https://img.shields.io/badge/Discord-Community-7289da?style=flat-square&logo=discord)](https://discord.com/users/jym.god) [![Built with AI](https://img.shields.io/badge/Built%20with-AI-orange?style=flat-square)](#)
+[![n8n Creator Badge](https://img.shields.io/badge/n8n-Creator-blue?style=flat-square&logo=n8n)](https://n8n.io/creators/jay-emp0/) [![Workflows Published](https://img.shields.io/badge/Workflows-14+-brightgreen?style=flat-square)](#workflows) [![Discord Community](https://img.shields.io/badge/Discord-Community-7289da?style=flat-square&logo=discord)](https://discord.com/users/jym.god) [![Built with AI](https://img.shields.io/badge/Built%20with-AI-orange?style=flat-square)](#)
 
 > **Production-ready automation workflows** that solve real business problems using AI agents, integrations, and modern APIs.
 
@@ -68,6 +68,26 @@
   <tr>
     <td><strong><a href="Backup%20Postgres%20Table%20to%20GitHub%20in%20CSV%20Format/">Postgres GitHub Backup</a></strong></td>
     <td>Daily automated backup of all PostgreSQL tables to GitHub as CSV files with version control. Never lose your database snapshots again! <a href="https://n8n.io/workflows/7419-daily-postgres-table-backup-to-github-in-csv-format/">View on n8n</a></td>
+    <td><span style="color: green;">✅ FREE</span></td>
+  </tr>
+  <tr>
+    <td><strong><a href="Ebook%20to%20Audiobook%20converter/">Ebook to Audiobook Converter</a></strong></td>
+    <td>Transform PDFs into professional audiobooks automatically using AI text-to-speech (MiniMax). Upload a PDF via web form and get an MP3 audiobook in Google Drive. Perfect for students, content creators, and accessibility. <a href="https://youtu.be/xKqkjXIPZoM">Watch Demo</a></td>
+    <td><span style="color: green;">✅ FREE</span></td>
+  </tr>
+  <tr>
+    <td><strong><a href="Memecoin%20Art%20Generator/">Memecoin Art Generator</a></strong></td>
+    <td>Automatically generates viral memecoin art and posts to Twitter using Google Gemini AI and NanoBanana image generation. Schedule automated meme posts with trending topics and Gen Z style tweets.</td>
+    <td><span style="color: green;">✅ FREE</span></td>
+  </tr>
+  <tr>
+    <td><strong><a href="f5bot%20reddit%20auto%20comment/">Reddit Auto-Comment Assistant</a></strong></td>
+    <td>AI-driven Reddit marketing automation that monitors F5Bot alerts and generates human-like comments with optional product promotion. Rule-aware posting that respects subreddit guidelines. Perfect for organic growth on Reddit.</td>
+    <td><span style="color: green;">✅ FREE</span></td>
+  </tr>
+  <tr>
+    <td><strong><a href="Reddit%20To%20Twitter%20Automation/">Reddit to Twitter Automation</a></strong></td>
+    <td>Repurpose trending Reddit posts into punchy first-person tweets automatically using Google Gemini AI. Runs every 2 hours with Google Sheets logging to avoid duplicate content. Automated content inspiration for Twitter.</td>
     <td><span style="color: green;">✅ FREE</span></td>
   </tr>
 </table>

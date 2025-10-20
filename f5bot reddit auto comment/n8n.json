@@ -19,8 +19,8 @@
       "type": "n8n-nodes-base.gmailTrigger",
       "typeVersion": 1.3,
       "position": [
-        -2128,
-        512
+        -2160,
+        576
       ],
       "id": "29031df0-dd8c-4f96-bf92-39f757d73099",
       "name": "Gmail Trigger",
@@ -48,8 +48,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -1744,
-        512
+        -1776,
+        576
       ],
       "id": "f7237452-ff16-4c73-8aeb-5efacabb8ba8",
       "name": "Edit Fields"
@@ -63,8 +63,8 @@
       "type": "n8n-nodes-base.reddit",
       "typeVersion": 1,
       "position": [
-        -1184,
-        672
+        -1200,
+        480
       ],
       "id": "3d214040-c455-4190-a2b7-68162c279ded",
       "name": "Get a post",
@@ -84,8 +84,8 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3.2,
       "position": [
-        -704,
-        528
+        -720,
+        336
       ],
       "id": "4986c00a-0ad2-4372-b12d-2969211130c0",
       "name": "Merge"
@@ -97,8 +97,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -1440,
-        512
+        -1408,
+        576
       ],
       "id": "0f224f38-0887-400b-a395-787c6a119f75",
       "name": "Code in JavaScript1"
@@ -130,8 +130,8 @@
       "type": "n8n-nodes-base.filter",
       "typeVersion": 2.2,
       "position": [
-        -1040,
-        672
+        -1056,
+        480
       ],
       "id": "52b466d0-c09f-48e1-b8ba-7284cdece760",
       "name": "Filter Own Posts"
@@ -149,8 +149,8 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 2.2,
       "position": [
-        -496,
-        528
+        -400,
+        336
       ],
       "id": "df891fe9-b3f3-43d2-a462-ada80c72640b",
       "name": "AI Agent"
@@ -178,8 +178,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -896,
-        672
+        -912,
+        480
       ],
       "id": "37241eeb-fa26-4dd9-87e9-05624d148bf8",
       "name": "Input for AI"
@@ -197,8 +197,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.2,
       "position": [
-        -560,
-        800
+        -464,
+        608
       ],
       "id": "b94bfefa-b2af-4e6a-a011-4cc13887dd8f",
       "name": "OpenAI Chat Model",
@@ -218,8 +218,8 @@
       "type": "n8n-nodes-base.reddit",
       "typeVersion": 1,
       "position": [
-        -128,
-        528
+        144,
+        336
       ],
       "id": "806e4ba5-0de3-46cc-833d-48f9007beea7",
       "name": "Create a comment in a post",
@@ -232,60 +232,14 @@
     },
     {
       "parameters": {
-        "authentication": "oAuth2",
-        "resource": "message",
-        "guildId": {
-          "__rl": true,
-          "value": "1363068664886329397",
-          "mode": "list",
-          "cachedResultName": "Emp0",
-          "cachedResultUrl": "https://discord.com/channels/1363068664886329397"
-        },
-        "channelId": {
-          "__rl": true,
-          "value": "1409452042946347048",
-          "mode": "list",
-          "cachedResultName": "reddit",
-          "cachedResultUrl": "https://discord.com/channels/1363068664886329397/1409452042946347048"
-        },
-        "options": {},
-        "embeds": {
-          "values": [
-            {
-              "description": "=/r/{{ $('Code in JavaScript1').first().json.subreddit }}\n\n> {{ $('AI Agent').item.json.output.comment }}\n\n{{ $('Merge').item.json.Text }}",
-              "author": "Reddit Automation Bot",
-              "title": "={{ $('Get a post').item.json.title }}",
-              "url": "={{ $('Code in JavaScript1').first().json.url }}"
-            }
-          ]
-        }
-      },
-      "type": "n8n-nodes-base.discord",
-      "typeVersion": 2,
-      "position": [
-        48,
-        528
-      ],
-      "id": "a13cff3f-141e-41ec-a8aa-072cdc71123c",
-      "name": "Send a message",
-      "webhookId": "c534d3fe-9ce7-4fb9-956c-46849b01c26e",
-      "credentials": {
-        "discordOAuth2Api": {
-          "id": "aAorRULaRsUXUcmc",
-          "name": "Discord"
-        }
-      }
-    },
-    {
-      "parameters": {
         "schemaType": "manual",
         "inputSchema": "{\n\t\"type\": \"object\",\n\t\"properties\": {\n\t\t\"comment\": {\n\t\t\t\"type\": \"string\"\n        }\n\t\t\n\t}\n}"
       },
       "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
       "typeVersion": 1.3,
       "position": [
-        -224,
-        800
+        -128,
+        608
       ],
       "id": "11daf05f-5194-4c93-ab5a-f19f15c8c666",
       "name": "Structured Output Parser"
@@ -313,8 +267,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -896,
-        512
+        -912,
+        320
       ],
       "id": "92689bbf-300e-48be-b924-fad10f6efea7",
       "name": "Edit Fields1"
@@ -340,8 +294,8 @@
       "type": "n8n-nodes-base.evaluationTrigger",
       "typeVersion": 4.7,
       "position": [
-        -2112,
-        704
+        -2128,
+        1600
       ],
       "id": "bb820e45-6899-45a4-b8bf-07e4d638ba2e",
       "name": "When fetching a dataset row",
@@ -358,7 +312,7 @@
           "__rl": true,
           "value": "1DbPO7U68-YlOHhb8fIlGu2ImD_N-cm0E-8pwc7qnAo4",
           "mode": "list",
-          "cachedResultName": "Twitter Automation",
+          "cachedResultName": "Reddit",
           "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1DbPO7U68-YlOHhb8fIlGu2ImD_N-cm0E-8pwc7qnAo4/edit?usp=drivesdk"
         },
         "sheetName": {
@@ -373,8 +327,8 @@
       "type": "n8n-nodes-base.googleSheetsTool",
       "typeVersion": 4.7,
       "position": [
-        -400,
-        800
+        -304,
+        608
       ],
       "id": "bea43dd9-92b4-4811-944d-de8f76a83a90",
       "name": "Get Google Sheet",
@@ -398,8 +352,8 @@
       "type": "n8n-nodes-base.evaluation",
       "typeVersion": 4.8,
       "position": [
-        240,
-        528
+        304,
+        1280
       ],
       "id": "ccfc1730-f266-45cf-ab70-f786c361e96f",
       "name": "Evaluate text format"
@@ -417,8 +371,8 @@
       "type": "n8n-nodes-base.evaluation",
       "typeVersion": 4.8,
       "position": [
-        240,
-        704
+        304,
+        1456
       ],
       "id": "b033365a-04ce-4102-9a13-8f9607ff95fd",
       "name": "Evaluate link in text"
@@ -436,8 +390,8 @@
       "type": "n8n-nodes-base.evaluation",
       "typeVersion": 4.8,
       "position": [
-        240,
-        880
+        304,
+        1632
       ],
       "id": "a8a89f02-6394-4b55-adf2-d1adf04bcb70",
       "name": "Evaluation ghseet tool"
@@ -452,8 +406,8 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3.2,
       "position": [
-        448,
-        544
+        512,
+        1296
       ],
       "id": "1fd1a10c-19e1-4fd2-9ffc-bb9a3a2849e2",
       "name": "Merge Evaluations"
@@ -467,8 +421,8 @@
       "type": "n8n-nodes-base.reddit",
       "typeVersion": 1,
       "position": [
-        -1184,
-        512
+        -1200,
+        320
       ],
       "id": "90eb0d88-d9f4-4f7a-8c24-ce73284eebc6",
       "name": "Subreddit about",
@@ -483,8 +437,8 @@
       "type": "n8n-nodes-base.reddit",
       "typeVersion": 1,
       "position": [
-        -1040,
-        512
+        -1056,
+        320
       ],
       "id": "68fdc148-1a92-4c55-831d-2985517c66ea",
       "name": "Subreddit rules",
@@ -531,8 +485,8 @@
       "type": "n8n-nodes-base.evaluation",
       "typeVersion": 4.8,
       "position": [
-        624,
-        560
+        688,
+        1312
       ],
       "id": "640958ad-76d6-4c32-941f-28e37461d0f8",
       "name": "Set Evaluation Output",
@@ -551,7 +505,7 @@
       "typeVersion": 2,
       "position": [
         -1600,
-        512
+        576
       ],
       "id": "e6583917-e190-4659-a9fb-7c7ab112ccd7",
       "name": "Filter Subreddit URLs"
@@ -563,12 +517,140 @@
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1.1,
       "position": [
-        -1920,
-        512
+        -1968,
+        576
       ],
       "id": "5b2b514a-2171-4781-a921-ccd36b513848",
       "name": "Delay 5m",
       "webhookId": "d9738785-7233-424a-a110-38fffe4d801e"
+    },
+    {
+      "parameters": {
+        "content": "## Get message from f5 bot\nYou must setup f5bot to send messages to your email with keywords with your niche\nCreate an [f5bot account](https://f5bot.com/)\n\nSetup your keyword niche\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAdded a delay of 5m because reddit flags automatic messages\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n![email received](https://articles.emp0.com/wp-content/uploads/2025/10/reddit-automation-email-f5bot.png)",
+        "height": 1104,
+        "width": 928,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -2192,
+        64
+      ],
+      "typeVersion": 1,
+      "id": "6a1b82db-9d63-41dd-b3de-022a823258dc",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 576,
+        "width": 3088,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -2192,
+        1216
+      ],
+      "typeVersion": 1,
+      "id": "e4f02e3a-c193-489a-9cd4-3d3eeaf171f1",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "## Get data from Reddit\n\nThis includes:\n- Reddit post\n- Subreddit description\n- Subreddit rules\n\nFilter out the user's posts and comments so that we dont reply to our own messages\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n![reddit post](https://articles.emp0.com/wp-content/uploads/2025/10/reddit-automation-get-post.png)",
+        "height": 1104,
+        "width": 656,
+        "color": 2
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -1248,
+        64
+      ],
+      "typeVersion": 1,
+      "id": "7e981083-99a7-4322-8299-48ed899529e1",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "content": "## Get Product and services\n\nGet a list of your product and services from Google sheets with a list of your products and services that you offer\n\nUse AI agent to reqord your product and services to  attach in your Reddit Response occasionally. It doesnt always promote your links, but it always give relevant replies\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n![Google Sheets](https://articles.emp0.com/wp-content/uploads/2025/10/reddit-automation-gsheet-promo.png)",
+        "height": 1104,
+        "width": 624,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -576,
+        64
+      ],
+      "typeVersion": 1,
+      "id": "b3eb5e4a-ea23-491f-a22b-ab768490cef0",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "content": "## Post on Reddit\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n![Reddit Post](https://articles.emp0.com/wp-content/uploads/2025/10/reddit-automation-reddit-comment.png)",
+        "height": 1104,
+        "width": 816,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        64,
+        64
+      ],
+      "typeVersion": 1,
+      "id": "8333f534-2635-4d63-9d33-f5242afc10c3",
+      "name": "Sticky Note5"
+    },
+    {
+      "parameters": {
+        "content": "![evaluations](https://articles.emp0.com/wp-content/uploads/2025/10/reddit-automation-evaluations.png)",
+        "height": 528,
+        "width": 864,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -1792,
+        1248
+      ],
+      "typeVersion": 1,
+      "id": "84a9f086-a75e-413b-a438-421b3aa04d6d",
+      "name": "Sticky Note6"
+    },
+    {
+      "parameters": {
+        "content": "## Evaluations\n\nThis is used to check if the AI is able to create propper reddit messages according to reddit and subreddit rules\nWe check for \n- too much robotic dash - in the message\n- make sure there is a link in the message when allowed\n- ensure the gsheet tool is called upon when necessary\n\nWhile adjusting this flow for your reddit niche\nyou can adjust the prompt and make sure it passes the basic evaluation before setting the workflow to active",
+        "height": 528,
+        "width": 400,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -2192,
+        1248
+      ],
+      "typeVersion": 1,
+      "id": "e4e1cc3f-50f1-458a-90be-6eac4acacd42",
+      "name": "Sticky Note7"
+    },
+    {
+      "parameters": {
+        "content": "\n![f5bot keywords](https://articles.emp0.com/wp-content/uploads/2025/10/reddit-automation-f5bot-setup.png)",
+        "height": 272,
+        "width": 512,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -2176,
+        192
+      ],
+      "typeVersion": 1,
+      "id": "e68cecb2-b107-4da7-80d8-e3682f16fd5d",
+      "name": "Sticky Note2"
     }
   ],
   "pinData": {},
@@ -678,17 +760,6 @@
       ]
     },
     "Create a comment in a post": {
-      "main": [
-        [
-          {
-            "node": "Send a message",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Send a message": {
       "main": [
         [
           {
@@ -855,7 +926,7 @@
     "errorWorkflow": "ernonQOxi07n6WGi",
     "timeSavedPerExecution": 10
   },
-  "versionId": "22fd5fac-f92d-4776-beb1-647c64077171",
+  "versionId": "9cb89aa0-6678-4b81-a4e7-968327f7ad8e",
   "meta": {
     "templateCredsSetupCompleted": true,
     "instanceId": "52254486b159b349334953c1738da94e90477c7604aa8db2062d11afc0120739"
