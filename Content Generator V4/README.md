@@ -14,7 +14,7 @@ Running a blog is essential to drive traffic, build authority, and rank on Googl
 
 - ✨ [V3 workflow on n8n](https://n8n.io/workflows/6734-ai-blog-automation-publish-hourly-seo-articles-to-wordpress-and-twitter-v3/) - Previous version
 - 📚 See [articles generated with V4](https://articles.emp0.com/tag/v4/) - **Live examples from this workflow**
-- 📊 [Google Sheets Configuration Template](https://docs.google.com/spreadsheets/d/e/2PACX-1vRN5LtYfZvQFaTY8xDCszXIacax-dmUAdKS4i5XqZSzRLeB0LwQrgn0_6Czj6rzDyPzmVLQ_B6Y2bma/pubhtml) - Copy and customize for your blog
+- 📊 [Google Sheets Configuration Template](https://docs.google.com/spreadsheets/d/13WpGs3XpKyu2Hamq2-5VsgAkfcozo2Lje0xCqWb921Y/edit?usp=sharing) - Copy and customize for your blog
 - 🛒 **V4 Available Now**: Contact us for pricing and access
 - 🔄 **V3 Upgrade Path**: Existing V3 customers get discounted V4 upgrade
 
@@ -24,7 +24,7 @@ Running a blog is essential to drive traffic, build authority, and rank on Googl
 
 To get the most out of this workflow, prepare the following:
 
-- **Copy the Google Sheets Template** - [Make a copy here](https://docs.google.com/spreadsheets/d/e/2PACX-1vRN5LtYfZvQFaTY8xDCszXIacax-dmUAdKS4i5XqZSzRLeB0LwQrgn0_6Czj6rzDyPzmVLQ_B6Y2bma/pubhtml) and fill in your:
+- **Copy the Google Sheets Template** - [Make a copy here](https://docs.google.com/spreadsheets/d/13WpGs3XpKyu2Hamq2-5VsgAkfcozo2Lje0xCqWb921Y/edit?usp=sharing) and fill in your:
   - Content categories with WordPress IDs
   - Brand customization data
   - Brand customization data
@@ -56,7 +56,7 @@ V4 introduces centralized configuration via Google Sheets, making it easy to man
 
 ### 📊 Configuration Template Structure
 
-[**Make a copy of the template here**](https://docs.google.com/spreadsheets/d/e/2PACX-1vRN5LtYfZvQFaTY8xDCszXIacax-dmUAdKS4i5XqZSzRLeB0LwQrgn0_6Czj6rzDyPzmVLQ_B6Y2bma/pubhtml)
+[**Make a copy of the template here**](https://docs.google.com/spreadsheets/d/13WpGs3XpKyu2Hamq2-5VsgAkfcozo2Lje0xCqWb921Y/edit?usp=sharing)
 
 The template contains 2 sheets:
 

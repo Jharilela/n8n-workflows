@@ -748,7 +748,7 @@ Dev.to uses header-based authentication:
 
 #### Step 1: Copy the Configuration Template
 
-1. Visit: [Google Sheets Configuration Template](https://docs.google.com/spreadsheets/d/e/2PACX-1vRN5LtYfZvQFaTY8xDCszXIacax-dmUAdKS4i5XqZSzRLeB0LwQrgn0_6Czj6rzDyPzmVLQ_B6Y2bma/pubhtml)
+1. Visit: [Google Sheets Configuration Template](https://docs.google.com/spreadsheets/d/13WpGs3XpKyu2Hamq2-5VsgAkfcozo2Lje0xCqWb921Y/edit?usp=sharing)
 2. Click **File** > **Make a copy**
 3. Name it: `Content Generator V4 - [Your Blog Name]`
 4. Save to your Google Drive
