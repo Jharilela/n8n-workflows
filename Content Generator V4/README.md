@@ -46,7 +46,7 @@ To get the most out of this workflow, prepare the following:
 - **Step 8**: WordPress Draft Creation with Internal Links
 - **Step 9**: Multi-Platform Distribution (Twitter, Dev.to)
 
-Read the [complete technical architecture and setup guide](Technical%20Setup.md)
+Read the [complete technical architecture and setup guide](https://github.com/Jharilela/n8n-workflows/blob/main/Content%20Generator%20V4/Technical%20Setup.md)
 
 ---
 
@@ -85,7 +85,7 @@ List out websites you would like to use as reference
 
 Clone the [Google Sheets Configuration Example](https://docs.google.com/spreadsheets/d/e/2PACX-1vRN5LtYfZvQFaTY8xDCszXIacax-dmUAdKS4i5XqZSzRLeB0LwQrgn0_6Czj6rzDyPzmVLQ_B6Y2bma/pubhtml)
 
-See [Technical Setup.md](Technical%20Setup.md) for complete Google Sheets integration instructions.
+See [Technical Setup.md](https://github.com/Jharilela/n8n-workflows/blob/main/Content%20Generator%20V4/Technical%20Setup.md) for complete Google Sheets integration instructions.
 
 ---
 
@@ -427,7 +427,7 @@ Need to customize this workflow for your niche? Or need help setting it up? We o
 - **Twitter Developer** account (for Twitter distribution) OPTIONAL
 - **Dev.to** account (for cross-posting) OPTIONAL
 
-See [Technical Setup.md](Technical%20Setup.md) for complete installation guide.
+See [Technical Setup.md](https://github.com/Jharilela/n8n-workflows/blob/main/Content%20Generator%20V4/Technical%20Setup.md) for complete installation guide.
 
 ---
 
