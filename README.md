@@ -1,6 +1,6 @@
 # n8n Automation Workflows by emp0
 
-[![n8n Creator Badge](https://img.shields.io/badge/n8n-Creator-blue?style=flat-square&logo=n8n)](https://n8n.io/creators/jay-emp0/) [![Workflows Published](https://img.shields.io/badge/Workflows-14+-brightgreen?style=flat-square)](#workflows) [![Discord Community](https://img.shields.io/badge/Discord-Community-7289da?style=flat-square&logo=discord)](https://discord.com/users/jym.god) [![Built with AI](https://img.shields.io/badge/Built%20with-AI-orange?style=flat-square)](#)
+[![n8n Creator Badge](https://img.shields.io/badge/n8n-Creator-blue?style=flat-square&logo=n8n)](https://n8n.io/creators/jay-emp0/) [![Workflows Published](https://img.shields.io/badge/Workflows-14+-brightgreen?style=flat-square)](#workflows) [![Discord Community](https://img.shields.io/badge/Discord-Community-7289da?style=flat-square&logo=discord)](https://discord.gg/qg3qVfFchV) [![Built with AI](https://img.shields.io/badge/Built%20with-AI-orange?style=flat-square)](#)
 
 > **Production-ready automation workflows** that solve real business problems using AI agents, integrations, and modern APIs.
 
@@ -126,7 +126,7 @@
 ### Need Help?
 
 - **Email:** [tools@emp0.com](mailto:tools@emp0.com)
-- **Discord:** [@jym.god](https://discord.com/users/jym.god)
+- **Discord:** [Join AI + Automation Discord](https://discord.gg/qg3qVfFchV)
 - **Website:** [emp0.com/automation-workflows](https://emp0.com/automation-workflows)
 
 ### Supporting Open Source Automation
@@ -134,6 +134,6 @@
 *If our free workflows saved you time or money, consider:*
 - ⭐ **[Starring this repository](https://github.com/Jharilela/n8n-workflows)**
 - **Sharing with your community**
-- **Join our [Discord community](https://discord.gg/ppYVyzcu7E)**
+- **Join our [Discord community](https://discord.gg/qg3qVfFchV)**
 - **Supporting us with a [paid workflow](https://store.emp0.com)**
 - **Reach out to the [emp0 team](https://emp0.com)**

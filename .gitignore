@@ -1,0 +1,7 @@
+## Repo-specific ignores
+# Do not commit contributor guide
+AGENTS.md
+
+# Do not commit JSON files in Content Generator V3/V4
+Content Generator V3/**/*.json
+Content Generator V4/**/*.json
