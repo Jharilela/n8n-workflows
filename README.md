@@ -41,6 +41,11 @@
     <td><a href="https://0emp0.gumroad.com/l/content-farming-v3" style="color: blue; text-decoration: none;"><span style="color: blue;">💰 PAID - $29</span></a></td>
   </tr>
   <tr>
+    <td><strong><a href="Content%20Generator%20V4/">Content Generator V4</a></strong></td>
+    <td>Blog automation for WordPress using ChatGPT-5 and Gemini with advanced content generation, SEO optimization, and multi-platform distribution. <a href="https://n8n.io/workflows/10079-content-farming-v4-blog-automation-for-wordpress-using-chatgpt-5-and-gemini/">View on n8n</a></td>
+    <td><a href="https://0emp0.gumroad.com/l/content-farming-v4" style="color: blue; text-decoration: none;"><span style="color: blue;">💰 PAID - $39</span></a></td>
+  </tr>
+  <tr>
     <td><strong><a href="Generate%20and%20Upload%20Blog%20Images%20with%20Leonardo%20AI%20and%20WordPress/">Blog Image Generator</a></strong></td>
     <td>Generate and upload blog images with Leonardo AI and WordPress integration for automated visual content creation. <a href="https://n8n.io/workflows/6363-generate-and-upload-blog-images-with-leonardo-ai-and-wordpress/">View on n8n</a></td>
     <td><span style="color: green;">✅ FREE</span></td>
@@ -72,22 +77,27 @@
   </tr>
   <tr>
     <td><strong><a href="Ebook%20to%20Audiobook%20converter/">Ebook to Audiobook Converter</a></strong></td>
-    <td>Transform PDFs into professional audiobooks automatically using AI text-to-speech (MiniMax). Upload a PDF via web form and get an MP3 audiobook in Google Drive. Perfect for students, content creators, and accessibility. <a href="https://youtu.be/xKqkjXIPZoM">Watch Demo</a></td>
+    <td>Transform PDFs into professional audiobooks automatically using AI text-to-speech (MiniMax). Upload a PDF via web form and get an MP3 audiobook in Google Drive. Perfect for students, content creators, and accessibility. <a href="https://n8n.io/workflows/9944-ebook-to-audiobook-converter-using-minimax-and-ffmpeg/">View on n8n</a></td>
     <td><span style="color: green;">✅ FREE</span></td>
   </tr>
   <tr>
     <td><strong><a href="Memecoin%20Art%20Generator/">Memecoin Art Generator</a></strong></td>
-    <td>Automatically generates viral memecoin art and posts to Twitter using Google Gemini AI and NanoBanana image generation. Schedule automated meme posts with trending topics and Gen Z style tweets.</td>
+    <td>Automatically generates viral memecoin art and posts to Twitter using Google Gemini AI and NanoBanana image generation. Schedule automated meme posts with trending topics and Gen Z style tweets. <a href="https://n8n.io/workflows/9470-generate-memecoin-art-with-gemini-flash-and-nanobanana-and-post-to-twitter/">View on n8n</a></td>
     <td><span style="color: green;">✅ FREE</span></td>
   </tr>
   <tr>
     <td><strong><a href="f5bot%20reddit%20auto%20comment/">Reddit Auto-Comment Assistant</a></strong></td>
-    <td>AI-driven Reddit marketing automation that monitors F5Bot alerts and generates human-like comments with optional product promotion. Rule-aware posting that respects subreddit guidelines. Perfect for organic growth on Reddit.</td>
+    <td>AI-driven Reddit marketing automation that monitors F5Bot alerts and generates human-like comments with optional product promotion. Rule-aware posting that respects subreddit guidelines. Perfect for organic growth on Reddit. <a href="https://n8n.io/workflows/9371-automate-reddit-replies-with-f5bot-alerts-and-gpt-5-personalized-comments/">View on n8n</a></td>
     <td><span style="color: green;">✅ FREE</span></td>
   </tr>
   <tr>
     <td><strong><a href="Reddit%20To%20Twitter%20Automation/">Reddit to Twitter Automation</a></strong></td>
-    <td>Repurpose trending Reddit posts into punchy first-person tweets automatically using Google Gemini AI. Runs every 2 hours with Google Sheets logging to avoid duplicate content. Automated content inspiration for Twitter.</td>
+    <td>Repurpose trending Reddit posts into punchy first-person tweets automatically using Google Gemini AI. Runs every 2 hours with Google Sheets logging to avoid duplicate content. Automated content inspiration for Twitter. <a href="https://n8n.io/workflows/9395-repurpose-reddit-posts-into-ai-tweets-with-gemini-and-google-sheets/">View on n8n</a></td>
+    <td><span style="color: green;">✅ FREE</span></td>
+  </tr>
+  <tr>
+    <td><strong><a href="Tweet%20Scheduler/">Tweet Scheduler</a></strong></td>
+    <td>Automated content and promo tweet scheduler with Gemini AI and Google Sheets. Posts unique tweets every 2 hours with 70% content (10 proven templates) and 30% promotional tweets. Includes duplicate prevention and automated logging. <a href="https://n8n.io/workflows/8435-automated-content-and-promo-tweet-scheduler-with-gemini-ai-and-google-sheets/">View on n8n</a></td>
     <td><span style="color: green;">✅ FREE</span></td>
   </tr>
 </table>
