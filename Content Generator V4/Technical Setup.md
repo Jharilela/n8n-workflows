@@ -2,7 +2,7 @@
 
 This document provides a comprehensive step-by-step technical guide to set up the Content Generator V4 system using n8n and third-party APIs. It is intended for developers, automation specialists, and technical users who want to deploy, modify, and run the system independently.
 
-**What's New in V4**: This guide includes setup for GPT-5 models, Gemini-based image generation (via Gemini node and API), dual vector database architecture, MongoDB memory system, internal linking configuration, and Yoast SEO integration.
+**What's New in V4**: This guide includes setup for GPT-5 models, Gemini-based nano banana pro image generation (via Gemini HTTP request and API), dual vector database architecture, MongoDB memory system, internal linking configuration, and Yoast SEO integration.
 
 ---
 
@@ -34,7 +34,7 @@ This document provides a comprehensive step-by-step technical guide to set up th
 ## What's New in V4 Setup Changes
 
 ### New Services to Configure
-1. **Google Gemini for Image Generation** (via Gemini node and API; replaces Replicate/Leonardo)
+1. **Google Gemini for Image Generation** (via Gemini node and API)
 2. **MongoDB Memory Store** (new for agent coordination and link tracking)
 3. **Google Sheets Integration** (for centralized category management)
 4. **WordPress Internal Link Fetching** (new feature for intelligent inbound linking)
@@ -44,9 +44,6 @@ This document provides a comprehensive step-by-step technical guide to set up th
 1. **GPT-5 Models** (automatic via OpenAI - no extra config needed)
 2. **Dual Vector Collections** (automatic creation on first run)
 3. **Link Validator MCP Tool** (included in workflow)
-
-### Removed Requirements
-1. ~~Leonardo AI API~~ and ~~Replicate API~~ (replaced by direct Gemini usage)
 
 ---
 
@@ -109,7 +106,7 @@ This document provides a comprehensive step-by-step technical guide to set up th
 │ ┌─────────────────────────────────────────────────────────┐     │
 │ │ Quality Check Agent (GPT-4o-mini)                       │     │
 │ │ - Validates: Flesch score, SEO, links, structure        │     │
-│ │ - Threshold: 80% quality score                          │     │
+│ │ - Threshold: 70% quality score                          │     │
 │ │ - Provides feedback for iteration (if needed)           │     │
 │ └─────────────────────────────────────────────────────────┘     │
 └────────────────┬────────────────────────────────────────────────┘
@@ -151,7 +148,7 @@ This document provides a comprehensive step-by-step technical guide to set up th
 ┌─────────────────────────────────────────────────────────────────┐
 │ STEP 9: Multi-Platform Distribution                             │
 │ - Twitter: Image + caption + link                               │
-│ - Dev.to: Markdown with EMP0 signature                          │
+│ - Dev.to: Markdown with your brand signature                    │
 │ - Schedule via n8n timers (optional)                            │
 └─────────────────────────────────────────────────────────────────┘
 ```
@@ -161,26 +158,16 @@ This document provides a comprehensive step-by-step technical guide to set up th
 ```
 MongoDB Atlas Cluster
 │
-├── Database: contentgen
+├── Database: n8n
+│   │
+│   ├── Collection: blog v4
 │   │
 │   ├── Collection: news articles
-│   │   ├── Fields: title, content, url, source, category, createdDate
-│   │   ├── Purpose: Full article metadata storage
-│   │   └── Indexes: Standard text indexes
 │   │
 │   ├── Collection: news chunks
-│   │   ├── Fields: text, embedding (1536 dims), contentFingerprint (SHA256)
-│   │   ├── Purpose: Vectorized content for semantic search
 │   │   └── Indexes: Vector search index (news_chunks_vector_index)
 │   │
-│   ├── Collection: generated_articles
-│   │   ├── Fields: topic, content, metadata, completedStep, wpPostId
-│   │   ├── Purpose: Track generation progress and WordPress mapping
-│   │   └── Indexes: Standard indexes on completedStep
-│   │
-│   └── Collection: chat_memory
-│       ├── Fields: sessionId, messages (array), metadata
-│       ├── Purpose: Agent memory for link tracking
+│   └── Collection: n8n_chat_histories
 │       └── Context Window: 25 messages
 ```
 
@@ -245,9 +232,9 @@ Before starting, ensure you have:
 
 After purchasing V4, you'll receive:
 
-1. **n8n.json** (main workflow)
+1. **Content Generator v4.1.json** (main workflow)
 2. **mcp - chart generation.json** (QuickChart integration)
-3. **mcp - image generation gemini.json** (Gemini node/API)
+3. **mcp - image generation gemini nano banana pro.json** (Gemini node/API)
 4. **mcp - web search.json** (internet search)
 5. **mcp - check link status.json** (link validator)
 
@@ -256,8 +243,8 @@ After purchasing V4, you'll receive:
 Web Search MCP
 ![Web Search MCP](https://articles.emp0.com/wp-content/uploads/2025/10/content-generator-v4-mcp-web-search.png)
 
-Image Generation (Gemini) MCP
-![Image Generation Gemini MCP](https://articles.emp0.com/wp-content/uploads/2025/10/content-generator-v4-mcp-image-generation-gemini.png)
+Image Generation (Gemini Nano banana pro) MCP
+![Image Generation Gemini MCP](https://articles.emp0.com/wp-content/uploads/2025/12/content-generator-v4-mcp-image-generation-gemini-nano-banana-pro.png)
 
 Check Link Status MCP
 ![Check Link Status MCP](https://articles.emp0.com/wp-content/uploads/2025/10/content-generator-v4-mcp-check-link-status.png)
@@ -402,6 +389,9 @@ V4 uses a dual-collection architecture. You need to create **two vector indexes*
 
 1. In MongoDB Atlas, go to your cluster
 2. Click **Search** tab
+
+![Vector Index Setup](https://articles.emp0.com/wp-content/uploads/2025/08/setup-mongodb-vector-index-1.png)
+
 3. Click **Create Search Index**
 4. Choose **JSON Editor**
 5. Database: `contentgen`
@@ -411,51 +401,27 @@ V4 uses a dual-collection architecture. You need to create **two vector indexes*
 
 ```json
 {
-  "mappings": {
-    "dynamic": true,
-    "fields": {
-      "embedding": {
-        "type": "knnVector",
-        "dimensions": 1536,
-        "similarity": "cosine"
-      },
-      "contentFingerprint": {
-        "type": "string"
-      },
-      "category": {
-        "type": "string"
-      },
-      "createdDate": {
-        "type": "date"
-      }
+  "fields": [
+    {
+      "numDimensions": 1536,
+      "path": "embedding",
+      "similarity": "dotProduct",
+      "type": "vector"
+    },
+    {
+      "path": "articleId",
+      "type": "filter"
+    },
+    {
+      "path": "createdDate",
+      "type": "filter"
     }
-  }
+  ]
 }
 ```
 
 9. Click **Create Search Index**
 10. Wait 2-5 minutes for **Active** status
-
-![Vector Index Setup](https://articles.emp0.com/wp-content/uploads/2025/08/setup-mongodb-vector-index-1.png)
-
-#### Index 2: news articles (Metadata Search)
-
-1. Create another search index
-2. Database: `contentgen`
-3. Collection: `news articles`
-4. Index Name: `news_articles_text_index`
-5. Use dynamic mapping (default)
-6. Click **Create Search Index**
-
-#### Verify Vector Index
-
-1. In MongoDB Atlas, go to **Search** tab
-2. Confirm both indexes show **Active** status
-3. You should see:
-   - `news_chunks_vector_index` on `news chunks` collection
-   - `news_articles_text_index` on `news articles` collection
-
-![Vector Index Active](https://articles.emp0.com/wp-content/uploads/2025/08/setup-mongodb-vector-index-6.png)
 
 **⚠️ IMPORTANT**: The workflow will fail without these vector indexes. Do not skip this step.
 
@@ -470,58 +436,13 @@ V4 now uses Google Gemini for image generation. You can generate images either w
 1. Visit Google AI Studio and create an API key.
 2. Restrict the key to your use case as needed.
 
-#### Option A: Use the n8n Gemini Node
+#### Use the n8n Gemini Node
 
 1. In n8n, go to **Credentials** > **Add Credential**.
 2. Select the Gemini/Google AI credential type and paste your API key.
 3. In the workflow, open the image generation node and switch it to Gemini.
 4. Choose an image-capable Gemini model and provide a concise prompt (e.g., "flat illustration of a tech blog hero image about {topic}").
 5. Configure output to return a base64 image; downstream nodes decode and upload to WordPress.
-
-#### Option B: Use HTTP Request (Direct API)
-
-1. Add an **HTTP Request** node.
-2. Method: `POST`; Auth: API Key (query param `key`).
-3. URL: Google AI Studio Generative Language API endpoint for your chosen Gemini model.
-4. Headers: `Content-Type: application/json`.
-5. Body: include model name, prompt text, and image generation parameters.
-6. Parse the response (base64 image). Use a Function or Set node to decode and pass the file to the WordPress Upload step.
-
-Notes:
-- Keep prompts deterministic; pass topic, brand colors, and aspect ratio.
-- Centralize defaults (size, style) in a preceding Set node for easy tuning.
-- Refer to Google AI/Gemini pricing documentation for up-to-date costs.
-
-
-#### DEPRECATED: Replicate (HTTP Header Auth) — no longer used
-
-_The project now uses Google Gemini via the Gemini node and direct API. The following Replicate-specific steps are retained for historical reference only and should be ignored in new setups._
-
-1. In n8n, go to **Credentials**
-2. Click **Add Credential**
-3. Search for **HTTP Header Auth**
-4. Configure:
-   - **Name**: `Authorization`
-   - **Value**: `Bearer YOUR_REPLICATE_TOKEN`
-5. Save as `Replicate - Gemini`
-
-Example:
-```
-Name: Authorization
-Value: Bearer r8_1a2b3c4d5e6f7g8h9i0j...
-```
-
-⚠️ **Important**: Include the word `Bearer ` before your token.
-
-#### DEPRECATED: Configure Image Generation Workflow (Replicate)
-
-1. Open the **MCP - Image Generator (Gemini)** workflow
-2. Find the HTTP Request node
-3. Select credential: `Replicate - Gemini`
-4. Verify the node uses a Gemini image-capable model
-5. Save workflow
-
-<!-- Deprecated cost notes for Replicate/Leonardo removed -->
 
 ---
 
@@ -695,27 +616,19 @@ For better practice (especially if your theme updates frequently):
 2. Click **Create App**
 3. Name: `n8n Content Generator V4`
 4. Save your **API Key** and **API Secret Key**
+5. Add your OAuth Redirect URL to the project settings
 
-#### Generate Access Tokens
-
-1. In your app settings, go to **Keys and tokens**
-2. Under **Access Token and Secret**, click **Generate**
-3. Set permissions to **Read and Write**
-4. Save:
-   - **Access Token**
-   - **Access Token Secret**
 
 #### Add to n8n
 
 1. In n8n, go to **Credentials**
 2. Click **Add Credential**
-3. Search for **Twitter OAuth1**
+3. Search for **Twitter OAuth2**
 4. Fill in all four values:
-   - **Consumer Key** (API Key)
-   - **Consumer Secret** (API Secret Key)
-   - **Access Token**
-   - **Access Token Secret**
-5. Save as `Twitter - OAuth1`
+   - **Client ID**
+   - **Client Secret**
+5. Save as `Twitter - OAuth2`
+6. Press Connect and Authorize the connection
 
 ---
 
@@ -733,11 +646,11 @@ For better practice (especially if your theme updates frequently):
 
 Dev.to uses header-based authentication:
 
-1. In your V4 workflow, find the **Dev.to HTTP Request** node
+1. In your V4 workflow, find the **HTTP Request** node
 2. Go to **Headers** section
 3. Add header:
    - **Name**: `api-key`
-   - **Value**: Your Dev.to API key
+   - **Value**: `Bearer api-key` (where api-key is the value from Dev.to)
 4. Save workflow
 
 ---
@@ -789,10 +702,14 @@ The template contains **3 sheets**: `category`, `data` (company profile), and `r
 **Available settings (examples)**:
 | key | description | example |
 |-----|-------------|---------|
-| COMPANY PROFILE | Your company details | "EMP0" |
-| ONLINE PROFILES | Your social URLs | "https://emp0.com" |
+| COMPANY NAME | Your company name  | EMP0 |
+| COMPANY PROFILE | Your company details | EMP0 is an AI Agency |
+| ONLINE PROFILES | Your social URLs | https://emp0.com |
+| MASCOT URL | Your mascot image URLs | https://emp0.com/logo.png |
+| MASCOT DESCRIPTION | Describe your mascot | Green one eye octopus |
+| BANNER IMAGE STYLE | Describe your banner image | Hyper realistic |
 
-![Gsheet company profile and links](https://articles.emp0.com/wp-content/uploads/2025/10/content-generator-v4-gsheet-settings-company-profile-1.png)
+![Gsheet company profile and links](https://articles.emp0.com/wp-content/uploads/2025/12/content-gen-excel-data.png)
 
 
 #### Step 4: Configure Sheet 3 - RSS Feeds
@@ -844,9 +761,9 @@ Best practices:
 5. Test the node
 
 Repeat for:
-- **Get categories** node (Range: `category!A:C`)
-- **Get brand data** node (Range: `data!A:B`)
-- **Get RSS feeds** node (Range: `rss!A:C`)
+- **Get categories** node 
+- **Get company profile** node
+- **Get RSS feeds** node
 
 #### Benefits of Google Sheets Configuration
 
@@ -860,56 +777,11 @@ Repeat for:
 
 ---
 
-## Step 4: Dual Vector Database Setup
-
-### Collection Structure
-
-V4 automatically creates these collections on first run:
-
-#### Collection 1: news articles
-- **Purpose**: Store full article metadata
-- **Fields**:
-  - `title` (string)
-  - `content` (string)
-  - `url` (string)
-  - `source` (string)
-  - `category` (string)
-  - `createdDate` (date)
-  - `contentFingerprint` (string, SHA256 hash)
-- **Indexes**: Standard text indexes
-
-#### Collection 2: news chunks
-- **Purpose**: Vectorized content for semantic search
-- **Fields**:
-  - `text` (string, chunk content)
-  - `embedding` (array, 1536 dimensions)
-  - `contentFingerprint` (string, parent article hash)
-  - `category` (string)
-  - `createdDate` (date)
-- **Indexes**: Vector search index (see section 3.3)
-
-#### Collection 3: generated_articles
-- **Purpose**: Track article generation progress
-- **Fields**:
-  - `topic` (string)
-  - `content` (object, with sections)
-  - `metadata` (object)
-  - `completedStep` (number, 1-9)
-  - `wpPostId` (number, WordPress post ID)
-  - `createdAt` (date)
-
-#### Collection 4: chat_memory
-- **Purpose**: Agent memory for link tracking
-- **Fields**:
-  - `sessionId` (string)
-  - `messages` (array, max 25)
-  - `metadata` (object)
-
-### Initialize Collections
+## Step 4: Initialize Collections
 
 1. Open the V4 workflow
 2. Find the first node: **Scheduler / Orchestrator Start**
-3. Manually execute **Test workflow** (top right)
+3. Manually execute **Test workflow** (to the left of the clock node in step 1)
 4. Wait for completion (5-10 minutes for first run)
 5. Verify in MongoDB Atlas:
    - Collections created
@@ -933,8 +805,7 @@ V4 automatically creates these collections on first run:
 
 **Recommended Schedule**:
 - **Step 1 (Ingestion)**: 7:00 AM daily
-- **Step 2 (Topic Selection)**: 8:00 AM daily
-- **Steps 3-9**: Hourly from 9 AM to 5 PM (8 articles/day)
+- **Steps 3-8**: Every 2 hours from 9 AM to 5 PM (5 articles/day)
 
 ### 5.2 Configure Content Pillars (via Google Sheets)
 
@@ -976,7 +847,6 @@ V4's intelligent internal linking fetches your WordPress posts.
 2. Locate the success condition expression
 3. Default: `>= 7` (70% quality score)
 4. Recommended range: `7-9` (70-90%)
-5. **Warning**: Do not set to 10 (100%) as it causes infinite loops
 
 ![Quality Threshold](https://articles.emp0.com/wp-content/uploads/2025/08/content-generator-v3-tutorial-adjust-quality-threshold.png)
 
@@ -991,28 +861,7 @@ V4 uses a task-based iteration system.
    - **Retry on Fail**: true
 3. Recommended for cost optimization:
    - Reduce **Max Tries** to 3
-   - Quality threshold to 7-8
-
-### 5.6 Customize Signature and Branding
-
-#### WordPress Signature (in article)
-
-1. Find node: **Task Definition Agent**
-2. Locate the task 6 (Conclusion) instructions
-3. Update to mention your brand instead of EMP0
-
-#### Dev.to Signature
-
-1. Find node: **Dev.to HTTP Request**
-2. Update the signature block in body template:
-
-```markdown
-✍️ Written by [Your Company Name](https://yoursite.com)
-🧠 Workflows on GitHub: [Your GitHub](https://github.com/yourusername)
-?? Join AI + Automation Discord: https://discord.gg/qg3qVfFchV
-```
-
-![Signature Customization](https://articles.emp0.com/wp-content/uploads/2025/08/content-generator-v3-tutorial-adjust-content-signature.png)
+   - Quality threshold to 6-7
 
 ---
 
@@ -1230,7 +1079,7 @@ Assuming market rate of $50 per 1200-word article:
 1. Verify WordPress REST API is accessible: `yoursite.com/wp-json/wp/v2/posts`
 2. Check Application Password is correct (no spaces)
 3. Ensure Yoast SEO plugin is installed (for `yoast_head_json`)
-4. Verify MongoDB Memory collection exists: `chat_memory`
+4. Verify MongoDB Memory collection exists: `n8n_chat_histories`
 5. Check Content Writer Agent memory tool configuration
 
 #### 4. Image Generation Fails
@@ -1453,57 +1302,6 @@ To adjust scoring criteria:
 }
 ```
 
-### Integration with External Tools
-
-#### Slack Notifications
-
-Add Slack alerts for workflow completion:
-
-1. Create Slack webhook
-2. Add HTTP Request node after Step 9
-3. Send notification with article details
-
-```json
-{
-  "text": "New article published!",
-  "blocks": [
-    {
-      "type": "section",
-      "text": {
-        "type": "mrkdwn",
-        "text": "*{{$json.title}}*\n<{{$json.url}}|View Article>"
-      }
-    }
-  ]
-}
-```
-
-#### Zapier / Make Integration
-
-To trigger external workflows:
-
-1. Add Webhook node at end of V4 workflow
-2. Send article metadata to Zapier/Make
-3. Trigger actions like:
-   - Send to email list (ConvertKit, Mailchimp)
-   - Post to LinkedIn
-   - Add to Notion database
-   - Generate social media variations
-
-#### Analytics Tracking
-
-Add UTM parameters to Twitter/Dev.to links:
-
-1. Find distribution nodes (Step 9)
-2. Append UTM parameters to URLs:
-
-```
-{{$json.wpUrl}}?utm_source=twitter&utm_medium=social&utm_campaign=v4_auto
-{{$json.wpUrl}}?utm_source=devto&utm_medium=social&utm_campaign=v4_auto
-```
-
-3. Track in Google Analytics
-
 ---
 
 ## Performance Optimization
@@ -1530,33 +1328,6 @@ Add UTM parameters to Twitter/Dev.to links:
 2. **Compression**: Enable MongoDB compression (M10+ clusters)
 3. **Selective Vectorization**: Only vectorize relevant content
 4. **Deduplication**: Aggressive content fingerprinting
-
----
-
-## Maintenance and Monitoring
-
-### Daily Checks
-
-- [ ] Review n8n execution logs for errors
-- [ ] Check MongoDB storage usage (Atlas dashboard)
-- [ ] Verify OpenAI API usage and costs
-- [ ] Scan WordPress for published drafts
-- [ ] Review Twitter/Dev.to posts for engagement
-
-### Weekly Tasks
-
-- [ ] Analyze article performance (GA4, Search Console)
-- [ ] Review and adjust quality threshold based on output
-- [ ] Check for duplicate content in MongoDB
-- [ ] Backup MongoDB collections
-
-### Monthly Tasks
-
-- [ ] Analyze cost trends (OpenAI, Gemini, n8n)
-- [ ] Review and update content pillars in Google Sheets
-- [ ] Update WordPress category mappings
-- [ ] Test new GPT models (if available)
-- [ ] Optimize poorly performing articles
 
 ---
 
@@ -1594,7 +1365,7 @@ Add UTM parameters to Twitter/Dev.to links:
 Need custom modifications or white-label deployment?
 
 - **Setup Service**: $500 - Full installation and configuration
-- **Custom Integration**: $100/hour - Add custom tools or APIs
+- **Custom Integration**: $25/hour - Add custom tools or APIs
 - **White-Label**: $2000 - Fully branded, multi-site deployment
 - **Consulting**: $150/hour - Strategy and optimization
 

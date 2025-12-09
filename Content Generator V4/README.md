@@ -68,7 +68,7 @@ Define your content pillars and map them to WordPress categories:
 #### Sheet 2: **data**
 Customize your brand and workflow behavior:
 
-![Gsheet company profile and links](https://articles.emp0.com/wp-content/uploads/2025/10/content-generator-v4-gsheet-settings-company-profile-1.png)
+![Gsheet company profile and links](https://articles.emp0.com/wp-content/uploads/2025/12/content-gen-excel-data.png)
 
 #### Sheet 3: **rss feed**
 List out websites you would like to use as reference
