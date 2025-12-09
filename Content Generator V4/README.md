@@ -1,5 +1,8 @@
 # AI Powered Blog Automation Workflow for WordPress and Twitter - v4 Revolution
 
+> Watch the Youtube Tutorial Video 
+> [![Watch the video](https://img.youtube.com/vi/lCJVUkv9oZw/maxresdefault.jpg)](https://www.youtube.com/watch?v=lCJVUkv9oZw)
+
 ## Introduction
 
 This is the most advanced AI-powered blog content generation and distribution workflow ever built for the n8n automation platform. Version 4 introduces groundbreaking improvements including GPT-5 model integration, 50-70% cost reduction, intelligent internal linking, automatic FAQ generation, and enterprise-grade content validation. It's designed for solo founders, creators, indie hackers, marketers, SEO consultants, or lean startup teams who want to dominate their niche with high-quality, search-optimized articles that drive traffic and conversions.
@@ -14,7 +17,7 @@ Running a blog is essential to drive traffic, build authority, and rank on Googl
 
 - ✨ [V3 workflow on n8n](https://n8n.io/workflows/6734-ai-blog-automation-publish-hourly-seo-articles-to-wordpress-and-twitter-v3/) - Previous version
 - 📚 See [articles generated with V4](https://articles.emp0.com/tag/v4/) - **Live examples from this workflow**
-- 📊 [Google Sheets Configuration Template](https://docs.google.com/spreadsheets/d/13WpGs3XpKyu2Hamq2-5VsgAkfcozo2Lje0xCqWb921Y/edit?usp=sharing) - Copy and customize for your blog
+- 📊 [Google Sheets Configuration Template](https://docs.google.com/spreadsheets/d/13WpGs3XpKyu2Hamq2-5VsgAkfcozo2Lje0xCqWb921Y) - Copy and customize for your blog
 - 🛒 **V4 Available Now**: Contact us for pricing and access
 - 🔄 **V3 Upgrade Path**: Existing V3 customers get discounted V4 upgrade
 
@@ -24,7 +27,7 @@ Running a blog is essential to drive traffic, build authority, and rank on Googl
 
 To get the most out of this workflow, prepare the following:
 
-- **Copy the Google Sheets Template** - [Make a copy here](https://docs.google.com/spreadsheets/d/13WpGs3XpKyu2Hamq2-5VsgAkfcozo2Lje0xCqWb921Y/edit?usp=sharing) and fill in your:
+- **Copy the Google Sheets Template** - [Make a copy here](https://docs.google.com/spreadsheets/d/13WpGs3XpKyu2Hamq2-5VsgAkfcozo2Lje0xCqWb921Y) and fill in your:
   - Content categories with WordPress IDs
   - Brand customization data
   - Brand customization data
@@ -56,7 +59,7 @@ V4 introduces centralized configuration via Google Sheets, making it easy to man
 
 ### 📊 Configuration Template Structure
 
-[**Make a copy of the template here**](https://docs.google.com/spreadsheets/d/13WpGs3XpKyu2Hamq2-5VsgAkfcozo2Lje0xCqWb921Y/edit?usp=sharing)
+[**Make a copy of the template here**](https://docs.google.com/spreadsheets/d/13WpGs3XpKyu2Hamq2-5VsgAkfcozo2Lje0xCqWb921Y)
 
 The template contains 2 sheets:
 
@@ -83,7 +86,7 @@ List out websites you would like to use as reference
 - ✅ **Version control** - Google Sheets tracks all changes automatically
 - ✅ **Centralized control** - Manage all content pillars from one place
 
-Clone the [Google Sheets Configuration Example](https://docs.google.com/spreadsheets/d/e/2PACX-1vRN5LtYfZvQFaTY8xDCszXIacax-dmUAdKS4i5XqZSzRLeB0LwQrgn0_6Czj6rzDyPzmVLQ_B6Y2bma/pubhtml)
+Clone the [Google Sheets Configuration Example](https://docs.google.com/spreadsheets/d/13WpGs3XpKyu2Hamq2-5VsgAkfcozo2Lje0xCqWb921Y)
 
 See [Technical Setup.md](https://github.com/Jharilela/n8n-workflows/blob/main/Content%20Generator%20V4/Technical%20Setup.md) for complete Google Sheets integration instructions.
 
