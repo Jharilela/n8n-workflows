@@ -207,7 +207,7 @@ This workflow is fully customizable:
 
 **Stop losing leads to competitors.** Start automatically capturing fresh Product Hunt leads every single day.
 
-→ **[Purchase Workflow](https://0emp0.gumroad.com/l/product-hunt-scraper)** - One-time payment, lifetime access
+→ **[Purchase Workflow](https://0emp0.gumroad.com/l/product-hunt-lead-generator)** - One-time payment, lifetime access
 
 → **[View Technical Setup Guide](Technical%20Setup.md)** - See what's involved
 

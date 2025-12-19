@@ -40,7 +40,7 @@ Before starting, ensure you have:
 First, you'll need to obtain the workflow JSON file:
 
 **Option 1: Purchase the workflow**
-- Visit [0emp0.gumroad.com/l/product-hunt-scraper](https://0emp0.gumroad.com/l/product-hunt-scraper)
+- Visit [0emp0.gumroad.com/l/product-hunt-lead-generator](https://0emp0.gumroad.com/l/product-hunt-lead-generator)
 - Complete your purchase
 - Download the `Product Hunt Scraper.json` file
 
@@ -887,7 +887,7 @@ Congratulations! Your Product Hunt Scraper is now fully configured.
 - **Apify Documentation**: [docs.apify.com](https://docs.apify.com)
 - **n8n Community Forum**: [community.n8n.io](https://community.n8n.io)
 - **emp0 Community**: [Skool Community](https://www.skool.com/aia-ai-automation-2762)
-- **Purchase Workflow**: [Gumroad](https://0emp0.gumroad.com/l/product-hunt-scraper)
+- **Purchase Workflow**: [Gumroad](https://0emp0.gumroad.com/l/product-hunt-lead-generator)
 - **emp0 Support**: [emp0.com](https://emp0.com)
 - **discord Support**: [@jym.god](https://discord.gg/RqMKqA3jMS)
 
