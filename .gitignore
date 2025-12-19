@@ -5,3 +5,6 @@ AGENTS.md
 # Do not commit JSON files in Content Generator V3/V4
 Content Generator V3/**/*.json
 Content Generator V4/**/*.json
+Content Generator Shopify Blog/**/*.json
+Product Hunt Scraper/**/*.json
+Product Hunt Scraper/**/*.png
