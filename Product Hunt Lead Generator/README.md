@@ -239,7 +239,7 @@ A: Yes! You can filter by category in the Apify scraper configuration.
 A: Yes! The workflow now uses Gmail API by default for better deliverability and tracking. You can customize it for other providers by using the SMTP node
 
 **Q: What's your refund policy?**
-A: 30-day money-back guarantee if you're not satisfied.
+A: No Refunds.
 
 ---
 
