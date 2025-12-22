@@ -1,6 +1,6 @@
 # Product Hunt Scraper - Automated Lead Generation Workflow
 
-![Product Hunt Scraper Workflow](https://articles.emp0.com/wp-content/uploads/2025/12/product-hunt-scraper-n8n-workflow.png)
+![Product Hunt Scraper Workflow](https://articles.emp0.com/wp-content/uploads/2025/12/product-hunt-scraper-n8n-workflow-1.png)
 
 ## Turn Product Hunt Launches Into Qualified Leads - Automatically
 

@@ -4,7 +4,10 @@
       "WebFetch(domain:github.com)",
       "WebFetch(domain:articles.emp0.com)",
       "Bash(curl -s \"https://docs.google.com/spreadsheets/d/e/2PACX-1vRN5LtYfZvQFaTY8xDCszXIacax-dmUAdKS4i5XqZSzRLeB0LwQrgn0_6Czj6rzDyPzmVLQ_B6Y2bma/pub?output=csv&gid=1255499381\")",
-      "Bash(find:*)"
+      "Bash(find:*)",
+      "Bash(python3:*)",
+      "Bash(ls:*)",
+      "Bash(cat:*)"
     ],
     "deny": []
   }
