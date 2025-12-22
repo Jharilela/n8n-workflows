@@ -129,17 +129,17 @@ MongoDB Atlas stores article embeddings and prevents duplicate content through v
 3. Create the following collections in database `n8n`:
 
 **Collection 1: news_articles**
-![MongoDB News Articles](https://articles.emp0.com/wp-content/uploads/2025/12/mongodb-news-articles.png)
+![MongoDB News Articles](https://articles.emp0.com/wp-content/uploads/2025/12/MongoDB-news-articles.png)
 - Stores original RSS feed articles
 - Used for content aggregation and deduplication
 
 **Collection 2: news_chunks**
-![MongoDB News Chunks](https://articles.emp0.com/wp-content/uploads/2025/12/mongodb-news-chunks.png)
+![MongoDB News Chunks](https://articles.emp0.com/wp-content/uploads/2025/12/MongoDB-news-chunks.png)
 - Stores processed article chunks with embeddings
 - Used for semantic search and topic matching
 
 **Collection 3: shopify blog**
-![MongoDB Shopify Blog Database](https://articles.emp0.com/wp-content/uploads/2025/12/mongodb-shopify-blog.png)
+![MongoDB Shopify Blog Database](https://articles.emp0.com/wp-content/uploads/2025/12/MongoDB-shopify-blog.png)
 - Stores generated blog posts
 - Tracks publication status and metadata
 
@@ -147,7 +147,7 @@ MongoDB Atlas stores article embeddings and prevents duplicate content through v
 
 **Step 1: Navigate to Search & Vector Search**
 
-![MongoDB Vector Search Index Step 1](https://articles.emp0.com/wp-content/uploads/2025/12/mongodb-vector-search-index-step-1.png)
+![MongoDB Vector Search Index Step 1](https://articles.emp0.com/wp-content/uploads/2025/12/MongoDB-vector-search-index-step-1.png)
 
 1. On the left sidebar, click on **"Search & Vector Search"** under DATABASE
 2. Click **"Create Search Index"**
@@ -160,7 +160,7 @@ MongoDB Atlas stores article embeddings and prevents duplicate content through v
 
 **Step 2: Configure Vector Field**
 
-![MongoDB Vector Search Index Step 2](https://articles.emp0.com/wp-content/uploads/2025/12/mongodb-vector-search-index-step-2.png)
+![MongoDB Vector Search Index Step 2](https://articles.emp0.com/wp-content/uploads/2025/12/MongoDB-vector-search-index-step-2.png)
 
 7. In the **"Vector Field"** section, configure:
    - **Path**: `embedding` (the field name where embeddings are stored)
@@ -174,7 +174,7 @@ MongoDB Atlas stores article embeddings and prevents duplicate content through v
 
 **Step 3: Review and Create**
 
-![MongoDB Vector Search Index Step 3](https://articles.emp0.com/wp-content/uploads/2025/12/mongodb-vector-search-index-step-3.png)
+![MongoDB Vector Search Index Step 3](https://articles.emp0.com/wp-content/uploads/2025/12/MongoDB-vector-search-index-step-3.png)
 
 10. Review your configuration:
     - **Vector Path**: embedding
@@ -281,7 +281,7 @@ Create columns:
 
 **How to Find Category IDs in Shopify:**
 
-![Shopify Category ID](https://articles.emp0.com/wp-content/uploads/2025/12/shopify-category-id.png)
+![Shopify Category ID](https://articles.emp0.com/wp-content/uploads/2025/12/Shopify-category-id.png)
 
 1. In Shopify Admin, go to **Content** → **Blog posts**
 2. Click on **"Manage blogs"** at the top
@@ -332,13 +332,13 @@ Create 8 columns with the following structure:
 
 **How to Find Your Shopify Theme ID:**
 
-![Shopify Theme Page](https://articles.emp0.com/wp-content/uploads/2025/12/shopify-theme-page.png)
+![Shopify Theme Page](https://articles.emp0.com/wp-content/uploads/2025/12/Shopify-theme-page.png)
 
 **Step 1: Navigate to Themes**
 1. In Shopify Admin, go to **Online Store** → **Themes**
 2. Find your current active theme (marked with "Current theme")
 
-![Shopify Theme Edit](https://articles.emp0.com/wp-content/uploads/2025/12/shopify-theme-edit.png)
+![Shopify Theme Edit](https://articles.emp0.com/wp-content/uploads/2025/12/Shopify-theme-edit.png)
 
 **Step 2: Access Theme Editor**
 3. Click the **"Customize"** button on your current theme
@@ -477,20 +477,54 @@ Image Style: Generate a wide, natural-looking scene with no square canvas, no ce
 5. App name: `n8n Content Generator`
 6. Click **"Create app"**
 
-![Shopify Build App](https://articles.emp0.com/wp-content/uploads/2025/12/shopify-build-app.png)
+![Shopify Build App](https://articles.emp0.com/wp-content/uploads/2025/12/Shopify-build-app.png)
 
-### Step 2: Configure API Scopes
+### Step 2: Configure API Scopes and Redirect URL
 
 1. Click **"Configure Admin API scopes"**
-2. Enable these scopes:
+2. Enable the following scopes:
+
+**Content & Blog Management:**
    - `read_content` - Read blog posts
    - `write_content` - Create blog posts
+
+**Product Management:**
+   - `read_all_orders` - Read all orders
+   - `read_orders` - Read orders
+   - `write_orders` - Write orders
+   - `read_product_feeds` - Read product feeds
+   - `write_product_feeds` - Write product feeds
+   - `read_product_listings` - Read product listings
+   - `write_product_listings` - Write product listings
    - `read_products` - Read products for product integration
+   - `write_products` - Write products
+
+**Theme & Asset Management:**
+   - `write_theme_code` - Write theme code
+   - `read_themes` - Read theme files
    - `write_themes` - Upload generated images to theme assets
-   - `read_themes` - Access theme files
+
+**Unauthenticated Access (for public data):**
+   - `unauthenticated_read_product_pickup_locations` - Read pickup locations
+   - `unauthenticated_read_product_inventory` - Read product inventory
+   - `unauthenticated_read_product_listings` - Read product listings
+   - `unauthenticated_read_product_tags` - Read product tags
+   - `unauthenticated_read_content` - Read content
+
 3. Click **"Save"**
 
-![Shopify App Create](https://articles.emp0.com/wp-content/uploads/2025/12/shopify-app-create.png)
+4. Under **"App setup"**, add your **Allowed redirection URL(s)**:
+   ```
+   https://n8n.emp0.com/rest/oauth2-credential/callback
+   ```
+
+   **Note:** Replace `n8n.emp0.com` with your actual n8n instance URL. If using n8n locally or self-hosted:
+   - Local: `http://localhost:5678/rest/oauth2-credential/callback`
+   - Self-hosted: `https://your-n8n-domain.com/rest/oauth2-credential/callback`
+
+5. Click **"Save"** again to apply redirect URL changes
+
+![Shopify App Create](https://articles.emp0.com/wp-content/uploads/2025/12/Shopify-app-create.png)
 
 ### Step 3: Install App and Get API Credentials
 
@@ -502,7 +536,7 @@ Image Style: Generate a wide, natural-looking scene with no square canvas, no ce
    - **API secret key** (Client Secret)
 4. **Save these securely**
 
-![Shopify App Client ID and Secret](https://articles.emp0.com/wp-content/uploads/2025/12/shopify-app-client-id-and-secret.png)
+![Shopify App Client ID and Secret](https://articles.emp0.com/wp-content/uploads/2025/12/Shopify-app-client-id-and-secret.png)
 
 ### Step 4: Get Your Shopify Store Details
 
@@ -513,7 +547,7 @@ You'll need:
   - Or you can find the blog handle in the blog settings
 - **Category Handles**: Found in the same section, used to categorize your blog posts
 
-![Shopify Category ID](https://articles.emp0.com/wp-content/uploads/2025/12/shopify-category-id.png)
+![Shopify Category ID](https://articles.emp0.com/wp-content/uploads/2025/12/Shopify-category-id.png)
 
 
 ### Step 5: Configure Shopify Credentials in n8n
@@ -759,7 +793,7 @@ Based on generating 10 articles per day:
 
 ### Configure Multiple Blogs
 
-![Multiple Blogs Setup](https://articles.emp0.com/wp-content/uploads/2025/12/pink-matcha-blog-list.png)
+![Multiple Blogs Setup](https://articles.emp0.com/wp-content/uploads/2025/12/Pink-Matcha-Blog-List.png)
 
 You can run multiple blogs within the same Shopify store, each with its own content strategy.
 
@@ -807,7 +841,7 @@ Each workflow can run on its own schedule:
 
 ### Configure Product Integration
 
-![Product Integration](https://articles.emp0.com/wp-content/uploads/2025/12/pink-matcha-digital-products.png)
+![Product Integration](https://articles.emp0.com/wp-content/uploads/2025/12/Pink-Matcha-Digital-Products.png)
 
 Automatically embed your Shopify products within blog articles.
 
@@ -850,7 +884,7 @@ Update the AI Agent prompt to include product references:
 
 **Step 3: Dynamic Product Selection**
 
-![Multiple Products](https://articles.emp0.com/wp-content/uploads/2025/12/pink-matcha-product-list.png)
+![Multiple Products](https://articles.emp0.com/wp-content/uploads/2025/12/Pink-Matcha-Product-List.png)
 
 Use AI to intelligently match products:
 
@@ -948,7 +982,7 @@ Modify the structured output parser to change article format:
 
 **Example Blog Post with Featured Image:**
 
-![Blog Post Detail](https://articles.emp0.com/wp-content/uploads/2025/12/pink-matcha-blog-post-screenshot-vertical-2.png)
+![Blog Post Detail](https://articles.emp0.com/wp-content/uploads/2025/12/Pink-Matcha-Blog-Post-Screenshot-Vertical-2.png)
 
 ### Add Internal Linking
 

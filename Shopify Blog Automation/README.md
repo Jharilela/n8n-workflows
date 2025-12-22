@@ -4,19 +4,19 @@
 
 ## Transform Your Shopify Store with Automated, AI Generated Blog Content
 
-**Stop struggling with content creation.** This n8n workflow automatically generates high quality, SEO optimized blog posts for your Shopify store every single day—while you focus on growing your business.
+**Stop struggling with content creation.** This n8n workflow automatically generates high quality, SEO optimized blog posts for your Shopify store every single day while you focus on growing your business.
 
 ---
 
 ## See It In Action: Real Results from Pink Matcha
 
-![Pink Matcha Homepage](https://articles.emp0.com/wp-content/uploads/2025/12/pink-matcha-homepage.png)
-
 **[Visit Pink Matcha Blog](https://pinkmatcha.co/blogs/blog)** - A real Shopify store powered by this exact workflow.
+
+![Full Blog Post Example](https://articles.emp0.com/wp-content/uploads/2025/12/Pink-Matcha-Blog-Post-Screenshot-Horizontal.png)
 
 ### Real Traffic, Real Results
 
-![Blog Traffic Growth](https://articles.emp0.com/wp-content/uploads/2025/12/pink-matcha-blog-traffic.png)
+![Blog Traffic Growth](https://articles.emp0.com/wp-content/uploads/2025/12/Pink-Matcha-Blog-Traffic.png)
 
 - **50+ SEO optimized articles** published automatically
 - **Consistent daily content** without hiring writers
@@ -27,10 +27,6 @@
 
 ## What You're Getting
 
-This isn't just a workflow—it's your complete content marketing system.
-
-![Full Blog Post Example](https://articles.emp0.com/wp-content/uploads/2025/12/pink-matcha-blog-post-screenshot-horizontal.png)
-
 ### ✅ Automated Content Generation
 - **AI creates unique articles** from curated industry sources
 - **SEO optimized** with proper headings, keywords, and meta descriptions
@@ -39,7 +35,7 @@ This isn't just a workflow—it's your complete content marketing system.
 
 ### ✅ Multi Category Organization
 
-![Blog Categories](https://articles.emp0.com/wp-content/uploads/2025/12/pink-matcha-blog-posts.png)
+![Blog Categories](https://articles.emp0.com/wp-content/uploads/2025/12/Pink-Matcha-Blog-Posts.png)
 
 - Fitness, Nutrition, Wellness, Personal Growth, or **YOUR niche**
 - Each category gets targeted, relevant content
@@ -66,7 +62,7 @@ This isn't just a workflow—it's your complete content marketing system.
 - Drive traffic directly to product pages
 - Turn readers into buyers with strategic product placement
 
-![Product Integration Example](https://articles.emp0.com/wp-content/uploads/2025/12/pink-matcha-digital-products.png)
+![Product Integration Example](https://articles.emp0.com/wp-content/uploads/2025/12/Pink-Matcha-Digital-Products.png)
 
 ### ✅ AI Generated Featured Images
 - **Automatically creates branded images** for every blog post
@@ -88,7 +84,7 @@ This isn't just a workflow—it's your complete content marketing system.
 
 ### Multiple Blogs, One Workflow
 
-![Multiple Blog Management](https://articles.emp0.com/wp-content/uploads/2025/12/pink-matcha-product-list.png)
+![Multiple Blog Management](https://articles.emp0.com/wp-content/uploads/2025/12/Pink-Matcha-Blog-List.png)
 
 **Run multiple blogs within the same Shopify store:**
 - Create separate blogs for different product lines (e.g., Men's vs Women's, Premium vs Budget)
@@ -104,7 +100,7 @@ This isn't just a workflow—it's your complete content marketing system.
 
 ### Intelligent Product Integration
 
-![Product Embedding](https://articles.emp0.com/wp-content/uploads/2025/12/pink-matcha-digital-products.png)
+![Multiple Product Integration](https://articles.emp0.com/wp-content/uploads/2025/12/Pink-Matcha-Product-List.png)
 
 **AI automatically embeds your products within blog content:**
 - Analyzes article topics and matches relevant products from your catalog
@@ -120,7 +116,7 @@ This isn't just a workflow—it's your complete content marketing system.
 
 ### AI Generated Featured Images with Brand Consistency
 
-![Pink Matcha Blog Post](https://articles.emp0.com/wp-content/uploads/2025/12/pink-matcha-blog-post-screenshot-horizontal.png)
+![Pink Matcha Blog Post](https://articles.emp0.com/wp-content/uploads/2025/12/Pink-Matcha-Homepage.png)
 
 **Every article gets a unique, professionally designed featured image:**
 - AI generates custom images matching your brand aesthetic
@@ -180,7 +176,7 @@ This isn't just a workflow—it's your complete content marketing system.
 
 ### 📈 Grow Your Organic Traffic
 
-![Complete Blog System](https://articles.emp0.com/wp-content/uploads/2025/12/pink-matcha-blog-list.png)
+![Blog Traffic Growth](https://articles.emp0.com/wp-content/uploads/2025/12/Pink-Matcha-Blog-Traffic.png)
 
 - Fresh content signals to Google you're active
 - More pages = more chances to rank
@@ -199,16 +195,16 @@ This isn't just a workflow—it's your complete content marketing system.
 ## Live Examples from Pink Matcha
 
 ### Fitness Content
-![Fitness Category](https://articles.emp0.com/wp-content/uploads/2025/12/pink-matcha-blog-category-fitness.png)
+![Fitness Category](https://articles.emp0.com/wp-content/uploads/2025/12/Pink-Matcha-Blog-Category-Fitness.png)
 
 ### Nutrition Content
-![Nutrition Category](https://articles.emp0.com/wp-content/uploads/2025/12/pink-matcha-blog-category-nutrition.png)
+![Nutrition Category](https://articles.emp0.com/wp-content/uploads/2025/12/Pink-Matcha-Blog-Category-Nutrition.png)
 
 ### Self Care Content
-![Self-Care Category](https://articles.emp0.com/wp-content/uploads/2025/12/pink-matcha-blog-category-self-care.png)
+![Self-Care Category](https://articles.emp0.com/wp-content/uploads/2025/12/Pink-Matcha-Blog-Category-Self-Care.png)
 
 ### Personal Growth Content
-![Personal Growth Category](https://articles.emp0.com/wp-content/uploads/2025/12/pink-matcha-blog-category-personal-growth.png)
+![Personal Growth Category](https://articles.emp0.com/wp-content/uploads/2025/12/Pink-Matcha-Blog-Category-Personal-Growth.png)
 
 **Every single one of these articles was generated automatically by this workflow.**
 
@@ -358,7 +354,7 @@ Join our [Skool community](https://www.skool.com/aia-ai-automation-2762) with 50
 
 ## Still Not Sure? See The Results
 
-![Shopify Blog Results](https://articles.emp0.com/wp-content/uploads/2025/12/pink-matcha-blog-posts.png)
+![Shopify Blog Results](https://articles.emp0.com/wp-content/uploads/2025/12/Pink-Matcha-Blog-Posts.png)
 
 Visit **[pinkmatcha.co](https://pinkmatcha.co)** to see this workflow in action. Every article. Every category. All automated.
 
@@ -368,54 +364,16 @@ Read the articles. Check the formatting. See the SEO optimization. Experience th
 
 ---
 
-## Two Ways to Get Access
-
-### Option 1: Purchase on Gumroad - $39
-**[Buy Now on Gumroad](https://0emp0.gumroad.com/l/shopify-blog-automation)**
-
-✅ Instant download
-
-✅ Lifetime access to workflow
-
-✅ All future updates free
-
-✅ Email support
-
-✅ All bonuses included
-
-
-### Option 2: Join Skool Community - $15/mo
-**[Join Skool Community](https://www.skool.com/aia-ai-automation-2762)**
-
-✅ Free access to ALL workflows
-
-✅ Community support & collaboration
-
-✅ Exclusive tips and strategies
-
-✅ Direct access to workflow creators
-
-✅ Weekly Q&A sessions
-
-
----
-
-## Get Started in 3 Steps
-
-1. **[Get the workflow](https://0emp0.gumroad.com/l/shopify-blog-automation)** - Purchase ($39) or join the community at $15/mo in [Skool](https://www.skool.com/aia-ai-automation-2762)
-2. Import all 4 workflows to n8n (5 minutes)
-3. Configure credentials and RSS feeds (60 minutes)
-
-**Start generating content today.**
-
----
-
 ## Questions? We're Here to Help
 
 📧 Email: [jay@emp0.com](mailto:jay@emp0.com)
+
 💬 Community: [Join our Skool](https://www.skool.com/aia-ai-automation-2762)
+
 📚 Documentation: Comprehensive guides included
+
 🎥 Videos: Setup tutorials (coming soon)
+
 
 ---
 
