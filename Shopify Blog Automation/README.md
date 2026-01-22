@@ -1,10 +1,12 @@
 # AI Powered Blog Automation for Shopify
 
-![AI Blog Automation Workflow](https://articles.emp0.com/wp-content/uploads/2025/12/n8n-workflow-main.png)
+>Watch the Youtube Tutorial Video[![Watch the video](https://img.youtube.com/vi/Cdjco9adzwg/maxresdefault.jpg)](https://www.youtube.com/watch?v=Cdjco9adzwg)
 
 ## Transform Your Shopify Store with Automated, AI Generated Blog Content
 
 **Stop struggling with content creation.** This n8n workflow automatically generates high quality, SEO optimized blog posts for your Shopify store every single day while you focus on growing your business.
+
+![AI Blog Automation Workflow](https://articles.emp0.com/wp-content/uploads/2025/12/n8n-workflow-main.png)
 
 ---
 
