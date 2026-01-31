@@ -1,10 +1,12 @@
 # Product Hunt Scraper - Automated Lead Generation Workflow
 
-![Product Hunt Scraper Workflow](https://articles.emp0.com/wp-content/uploads/2025/12/product-hunt-scraper-n8n-workflow-1.png)
+> Watch the full Youtube Video Tutorial [![Product Hunt Lead generator](https://img.youtube.com/vi/Y-wUr2-UYZk/maxresdefault.jpg)](https://youtu.be/Y-wUr2-UYZk)
 
 ## Turn Product Hunt Launches Into Qualified Leads - Automatically
 
 **Stop manually searching Product Hunt for potential customers.** This n8n workflow automatically scrapes the latest products from Product Hunt every day, enriches them with contact details, and delivers organized lead lists straight to your Google Sheets.
+
+![Product Hunt Scraper Workflow](https://articles.emp0.com/wp-content/uploads/2025/12/product-hunt-scraper-n8n-workflow-1.png)
 
 ### What You Get
 
